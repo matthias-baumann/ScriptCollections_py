@@ -1,0 +1,35 @@
+Written into idl-memory
+
+bsq --> [columns, rows, bands]
+bil --> [columns, bands, rows]
+bip --> [band, colums, rows]
+
+
+convert bip into bsq
+
+create output empty array, write data from BIP into an output-BSQ
+
+Written into a *.pro-file
+------------------------------
+PRO test.pro
+
+image = read_binary('coastal.bsq', data_type=1,data_dims=[6,2000,2000])
+
+out = indgen([2000,2000,6],/BYTE)
+
+for band=0,5 do
+out[*,*,band] = image[band,*,*]
+endfor
+
+OPENW, 1, 'coastal-converted.bin'
+wRITEU, 1, out
+CLOSE, 1
+
+END
+------------------------------
+
+--> to start the script 
+.compile test.pro
+
+--> then run the script
+test

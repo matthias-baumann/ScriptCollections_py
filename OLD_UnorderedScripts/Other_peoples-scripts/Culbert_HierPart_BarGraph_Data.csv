@@ -1,0 +1,369 @@
+Ecoregion,Guild,Category,Var,IC
+Conterminous United States,All,horiz_comp,Prop. Barren,4.540539703
+Conterminous United States,All,horiz_comp,Prop. Cultivated Crops,3.592911322
+Conterminous United States,All,horiz_comp,Prop. Deciduous Forest,12.67346279
+Conterminous United States,All,horiz_comp,Prop. Evergreen Forest,NA
+Conterminous United States,All,horiz_comp,Prop. Mixed Forest,5.106996197
+Conterminous United States,All,horiz_comp,Prop. Developed,NA
+Conterminous United States,All,horiz_comp,Prop. Herbaceous Wetland,NA
+Conterminous United States,All,horiz_comp,Prop. Woody Wetland,2.589873961
+Conterminous United States,All,horiz_comp,Prop. Open Water,NA
+Conterminous United States,All,horiz_comp,Prop. Pasture,NA
+Conterminous United States,All,horiz_comp,Prop. ScrubShrub,NA
+Conterminous United States,All,horiz_comp,Number of Land Cover Classes,6.596838447
+Conterminous United States,All,horiz_comp,Shannon Diversity of Land Cover Classes,NA
+Conterminous United States,All,horiz_config,Forest Edge,16.74549771
+Conterminous United States,All,horiz_config,Shrubland Core,6.665954455
+Conterminous United States,All,horiz_config,Shrubland Edge,4.086029931
+Conterminous United States,All,horiz_config,Grassland Core Area,5.227156051
+Conterminous United States,All,horiz_config,Grassland Edge Area,NA
+Conterminous United States,All,vert,Mean Canopy Height,17.08806473
+Conterminous United States,All,vert,StdDev of Canopy Height,15.08667471
+Conterminous United States,All,vert,Mean Biomass,NA
+Conterminous United States,All,vert,StdDev of Biomass,NA
+Conterminous United States,All,vert,CV of Biomass,NA
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Barren,NA
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Cultivated Crops,NA
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Deciduous Forest,NA
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Evergreen Forest,6.77093353
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Mixed Forest,1.89407018
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Developed,30.31191212
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Herbaceous Wetland,2.91596497
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Woody Wetland,NA
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Open Water,NA
+Eastern Broadleaf Forest,All,horiz_comp,Prop. Pasture,3.90676102
+Eastern Broadleaf Forest,All,horiz_comp,Prop. ScrubShrub,NA
+Eastern Broadleaf Forest,All,horiz_comp,Number of Land Cover Classes,2.76041897
+Eastern Broadleaf Forest,All,horiz_comp,Shannon Diversity of Land Cover Classes,NA
+Eastern Broadleaf Forest,All,horiz_config,Forest Edge,NA
+Eastern Broadleaf Forest,All,horiz_config,Shrubland Core,NA
+Eastern Broadleaf Forest,All,horiz_config,Shrubland Edge,NA
+Eastern Broadleaf Forest,All,horiz_config,Grassland Core Area,NA
+Eastern Broadleaf Forest,All,horiz_config,Grassland Edge Area,NA
+Eastern Broadleaf Forest,All,vert,Mean Canopy Height,26.64503568
+Eastern Broadleaf Forest,All,vert,StdDev of Canopy Height,21.2933614
+Eastern Broadleaf Forest,All,vert,Mean Biomass,NA
+Eastern Broadleaf Forest,All,vert,StdDev of Biomass,NA
+Eastern Broadleaf Forest,All,vert,CV of Biomass,3.50154214
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Barren,NA
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Cultivated Crops,10.7782367
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Deciduous Forest,NA
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Evergreen Forest,NA
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Mixed Forest,NA
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Developed,42.96181296
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Herbaceous Wetland,NA
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Woody Wetland,NA
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Open Water,NA
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. Pasture,NA
+Central Appalachian Broadleaf Forest,All,horiz_comp,Prop. ScrubShrub,9.79478922
+Central Appalachian Broadleaf Forest,All,horiz_comp,Number of Land Cover Classes,6.17321081
+Central Appalachian Broadleaf Forest,All,horiz_comp,Shannon Diversity of Land Cover Classes,2.33554227
+Central Appalachian Broadleaf Forest,All,horiz_config,Forest Edge,NA
+Central Appalachian Broadleaf Forest,All,horiz_config,Shrubland Core,NA
+Central Appalachian Broadleaf Forest,All,horiz_config,Shrubland Edge,NA
+Central Appalachian Broadleaf Forest,All,horiz_config,Grassland Core Area,NA
+Central Appalachian Broadleaf Forest,All,horiz_config,Grassland Edge Area,NA
+Central Appalachian Broadleaf Forest,All,vert,Mean Canopy Height,9.42458249
+Central Appalachian Broadleaf Forest,All,vert,StdDev of Canopy Height,3.31473885
+Central Appalachian Broadleaf Forest,All,vert,Mean Biomass,NA
+Central Appalachian Broadleaf Forest,All,vert,StdDev of Biomass,15.21708669
+Central Appalachian Broadleaf Forest,All,vert,CV of Biomass,NA
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Barren,NA
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Cultivated Crops,8.48214039
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Deciduous Forest,10.2451459
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Evergreen Forest,NA
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Mixed Forest,NA
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Developed,4.50917122
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Herbaceous Wetland,NA
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Woody Wetland,NA
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Open Water,4.49128139
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. Pasture,NA
+Great Plains Palouse Dry Steppe,All,horiz_comp,Prop. ScrubShrub,4.49525357
+Great Plains Palouse Dry Steppe,All,horiz_comp,Number of Land Cover Classes,10.19228941
+Great Plains Palouse Dry Steppe,All,horiz_comp,Shannon Diversity of Land Cover Classes,13.69657378
+Great Plains Palouse Dry Steppe,All,horiz_config,Forest Edge,NA
+Great Plains Palouse Dry Steppe,All,horiz_config,Shrubland Core,NA
+Great Plains Palouse Dry Steppe,All,horiz_config,Shrubland Edge,NA
+Great Plains Palouse Dry Steppe,All,horiz_config,Grassland Core Area,4.54796483
+Great Plains Palouse Dry Steppe,All,horiz_config,Grassland Edge Area,5.17508669
+Great Plains Palouse Dry Steppe,All,vert,Mean Canopy Height,NA
+Great Plains Palouse Dry Steppe,All,vert,StdDev of Canopy Height,18.55017741
+Great Plains Palouse Dry Steppe,All,vert,Mean Biomass,7.06232714
+Great Plains Palouse Dry Steppe,All,vert,StdDev of Biomass,NA
+Great Plains Palouse Dry Steppe,All,vert,CV of Biomass,8.55258827
+Conterminous United States,Forest,horiz_comp,Prop. Barren,3.652437297
+Conterminous United States,Forest,horiz_comp,Prop. Cultivated Crops,3.507074688
+Conterminous United States,Forest,horiz_comp,Prop. Deciduous Forest,10.98323614
+Conterminous United States,Forest,horiz_comp,Prop. Evergreen Forest,NA
+Conterminous United States,Forest,horiz_comp,Prop. Mixed Forest,5.282582603
+Conterminous United States,Forest,horiz_comp,Prop. Developed,NA
+Conterminous United States,Forest,horiz_comp,Prop. Herbaceous Wetland,NA
+Conterminous United States,Forest,horiz_comp,Prop. Woody Wetland,3.006814983
+Conterminous United States,Forest,horiz_comp,Prop. Open Water,NA
+Conterminous United States,Forest,horiz_comp,Prop. Pasture,NA
+Conterminous United States,Forest,horiz_comp,Prop. ScrubShrub,NA
+Conterminous United States,Forest,horiz_comp,Number of Land Cover Classes,5.700611943
+Conterminous United States,Forest,horiz_comp,Shannon Diversity of Land Cover Classes,NA
+Conterminous United States,Forest,horiz_config,Forest Edge,16.50173729
+Conterminous United States,Forest,horiz_config,Shrubland Core,7.731795795
+Conterminous United States,Forest,horiz_config,Shrubland Edge,5.332134447
+Conterminous United States,Forest,horiz_config,Grassland Core Area,5.300209217
+Conterminous United States,Forest,horiz_config,Grassland Edge Area,NA
+Conterminous United States,Forest,vert,Mean Canopy Height,16.68923692
+Conterminous United States,Forest,vert,StdDev of Canopy Height,16.31212868
+Conterminous United States,Forest,vert,Mean Biomass,NA
+Conterminous United States,Forest,vert,StdDev of Biomass,NA
+Conterminous United States,Forest,vert,CV of Biomass,NA
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Barren,NA
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Cultivated Crops,NA
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Deciduous Forest,NA
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Evergreen Forest,8.79753998
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Mixed Forest,2.57290899
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Developed,14.98287685
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Herbaceous Wetland,1.1288066
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Woody Wetland,NA
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Open Water,NA
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. Pasture,3.71127023
+Eastern Broadleaf Forest,Forest,horiz_comp,Prop. ScrubShrub,NA
+Eastern Broadleaf Forest,Forest,horiz_comp,Number of Land Cover Classes,1.91766059
+Eastern Broadleaf Forest,Forest,horiz_comp,Shannon Diversity of Land Cover Classes,NA
+Eastern Broadleaf Forest,Forest,horiz_config,Forest Edge,NA
+Eastern Broadleaf Forest,Forest,horiz_config,Shrubland Core,NA
+Eastern Broadleaf Forest,Forest,horiz_config,Shrubland Edge,NA
+Eastern Broadleaf Forest,Forest,horiz_config,Grassland Core Area,NA
+Eastern Broadleaf Forest,Forest,horiz_config,Grassland Edge Area,NA
+Eastern Broadleaf Forest,Forest,vert,Mean Canopy Height,35.25158776
+Eastern Broadleaf Forest,Forest,vert,StdDev of Canopy Height,22.38315054
+Eastern Broadleaf Forest,Forest,vert,Mean Biomass,NA
+Eastern Broadleaf Forest,Forest,vert,StdDev of Biomass,NA
+Eastern Broadleaf Forest,Forest,vert,CV of Biomass,9.25419846
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Barren,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Cultivated Crops,5.57170005
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Deciduous Forest,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Evergreen Forest,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Mixed Forest,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Developed,50.59214688
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Herbaceous Wetland,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Woody Wetland,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Open Water,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. Pasture,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Prop. ScrubShrub,4.57727581
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Number of Land Cover Classes,8.53755118
+Central Appalachian Broadleaf Forest,Forest,horiz_comp,Shannon Diversity of Land Cover Classes,3.07882419
+Central Appalachian Broadleaf Forest,Forest,horiz_config,Forest Edge,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_config,Shrubland Core,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_config,Shrubland Edge,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_config,Grassland Core Area,NA
+Central Appalachian Broadleaf Forest,Forest,horiz_config,Grassland Edge Area,NA
+Central Appalachian Broadleaf Forest,Forest,vert,Mean Canopy Height,15.1475178
+Central Appalachian Broadleaf Forest,Forest,vert,StdDev of Canopy Height,4.40084584
+Central Appalachian Broadleaf Forest,Forest,vert,Mean Biomass,NA
+Central Appalachian Broadleaf Forest,Forest,vert,StdDev of Biomass,8.09413824
+Central Appalachian Broadleaf Forest,Forest,vert,CV of Biomass,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Barren,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Cultivated Crops,7.40666375
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Deciduous Forest,9.36292937
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Evergreen Forest,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Mixed Forest,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Developed,4.66732206
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Herbaceous Wetland,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Woody Wetland,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Open Water,2.97242003
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. Pasture,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Prop. ScrubShrub,4.29903448
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Number of Land Cover Classes,8.20324278
+Great Plains Palouse Dry Steppe,Forest,horiz_comp,Shannon Diversity of Land Cover Classes,7.25643809
+Great Plains Palouse Dry Steppe,Forest,horiz_config,Forest Edge,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_config,Shrubland Core,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_config,Shrubland Edge,NA
+Great Plains Palouse Dry Steppe,Forest,horiz_config,Grassland Core Area,5.68870876
+Great Plains Palouse Dry Steppe,Forest,horiz_config,Grassland Edge Area,3.43909465
+Great Plains Palouse Dry Steppe,Forest,vert,Mean Canopy Height,NA
+Great Plains Palouse Dry Steppe,Forest,vert,StdDev of Canopy Height,26.2465656
+Great Plains Palouse Dry Steppe,Forest,vert,Mean Biomass,14.00753962
+Great Plains Palouse Dry Steppe,Forest,vert,StdDev of Biomass,NA
+Great Plains Palouse Dry Steppe,Forest,vert,CV of Biomass,6.45004083
+Conterminous United States,Grassland,horiz_comp,Prop. Barren,3.310246708
+Conterminous United States,Grassland,horiz_comp,Prop. Cultivated Crops,12.31313866
+Conterminous United States,Grassland,horiz_comp,Prop. Deciduous Forest,5.399615424
+Conterminous United States,Grassland,horiz_comp,Prop. Evergreen Forest,NA
+Conterminous United States,Grassland,horiz_comp,Prop. Mixed Forest,6.333134096
+Conterminous United States,Grassland,horiz_comp,Prop. Developed,NA
+Conterminous United States,Grassland,horiz_comp,Prop. Herbaceous Wetland,NA
+Conterminous United States,Grassland,horiz_comp,Prop. Woody Wetland,5.346496472
+Conterminous United States,Grassland,horiz_comp,Prop. Open Water,NA
+Conterminous United States,Grassland,horiz_comp,Prop. Pasture,NA
+Conterminous United States,Grassland,horiz_comp,Prop. ScrubShrub,NA
+Conterminous United States,Grassland,horiz_comp,Number of Land Cover Classes,3.490091154
+Conterminous United States,Grassland,horiz_comp,Shannon Diversity of Land Cover Classes,NA
+Conterminous United States,Grassland,horiz_config,Forest Edge,15.77581853
+Conterminous United States,Grassland,horiz_config,Shrubland Core,3.829092651
+Conterminous United States,Grassland,horiz_config,Shrubland Edge,3.244551442
+Conterminous United States,Grassland,horiz_config,Grassland Core Area,13.20631967
+Conterminous United States,Grassland,horiz_config,Grassland Edge Area,NA
+Conterminous United States,Grassland,vert,Mean Canopy Height,13.13205924
+Conterminous United States,Grassland,vert,StdDev of Canopy Height,14.61943597
+Conterminous United States,Grassland,vert,Mean Biomass,NA
+Conterminous United States,Grassland,vert,StdDev of Biomass,NA
+Conterminous United States,Grassland,vert,CV of Biomass,NA
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Barren,NA
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Cultivated Crops,NA
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Deciduous Forest,NA
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Evergreen Forest,6.14538724
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Mixed Forest,4.38003029
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Developed,8.56284091
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Herbaceous Wetland,10.42282335
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Woody Wetland,NA
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Open Water,NA
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. Pasture,4.16469719
+Eastern Broadleaf Forest,Grassland,horiz_comp,Prop. ScrubShrub,NA
+Eastern Broadleaf Forest,Grassland,horiz_comp,Number of Land Cover Classes,2.4582549
+Eastern Broadleaf Forest,Grassland,horiz_comp,Shannon Diversity of Land Cover Classes,NA
+Eastern Broadleaf Forest,Grassland,horiz_config,Forest Edge,NA
+Eastern Broadleaf Forest,Grassland,horiz_config,Shrubland Core,NA
+Eastern Broadleaf Forest,Grassland,horiz_config,Shrubland Edge,NA
+Eastern Broadleaf Forest,Grassland,horiz_config,Grassland Core Area,NA
+Eastern Broadleaf Forest,Grassland,horiz_config,Grassland Edge Area,NA
+Eastern Broadleaf Forest,Grassland,vert,Mean Canopy Height,34.85982415
+Eastern Broadleaf Forest,Grassland,vert,StdDev of Canopy Height,16.87529874
+Eastern Broadleaf Forest,Grassland,vert,Mean Biomass,NA
+Eastern Broadleaf Forest,Grassland,vert,StdDev of Biomass,NA
+Eastern Broadleaf Forest,Grassland,vert,CV of Biomass,12.13084325
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Barren,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Cultivated Crops,18.0715228
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Deciduous Forest,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Evergreen Forest,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Mixed Forest,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Developed,2.57249894
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Herbaceous Wetland,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Woody Wetland,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Open Water,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. Pasture,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Prop. ScrubShrub,11.99721248
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Number of Land Cover Classes,8.03445017
+Central Appalachian Broadleaf Forest,Grassland,horiz_comp,Shannon Diversity of Land Cover Classes,8.97891855
+Central Appalachian Broadleaf Forest,Grassland,horiz_config,Forest Edge,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_config,Shrubland Core,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_config,Shrubland Edge,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_config,Grassland Core Area,NA
+Central Appalachian Broadleaf Forest,Grassland,horiz_config,Grassland Edge Area,NA
+Central Appalachian Broadleaf Forest,Grassland,vert,Mean Canopy Height,18.75103702
+Central Appalachian Broadleaf Forest,Grassland,vert,StdDev of Canopy Height,3.61729515
+Central Appalachian Broadleaf Forest,Grassland,vert,Mean Biomass,NA
+Central Appalachian Broadleaf Forest,Grassland,vert,StdDev of Biomass,27.9770649
+Central Appalachian Broadleaf Forest,Grassland,vert,CV of Biomass,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Barren,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Cultivated Crops,5.55302278
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Deciduous Forest,4.90467513
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Evergreen Forest,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Mixed Forest,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Developed,7.74363103
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Herbaceous Wetland,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Woody Wetland,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Open Water,8.6033972
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. Pasture,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Prop. ScrubShrub,9.55593514
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Number of Land Cover Classes,3.67753397
+Great Plains Palouse Dry Steppe,Grassland,horiz_comp,Shannon Diversity of Land Cover Classes,7.38517584
+Great Plains Palouse Dry Steppe,Grassland,horiz_config,Forest Edge,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_config,Shrubland Core,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_config,Shrubland Edge,NA
+Great Plains Palouse Dry Steppe,Grassland,horiz_config,Grassland Core Area,9.54291109
+Great Plains Palouse Dry Steppe,Grassland,horiz_config,Grassland Edge Area,5.67374644
+Great Plains Palouse Dry Steppe,Grassland,vert,Mean Canopy Height,NA
+Great Plains Palouse Dry Steppe,Grassland,vert,StdDev of Canopy Height,14.55936511
+Great Plains Palouse Dry Steppe,Grassland,vert,Mean Biomass,19.0828976
+Great Plains Palouse Dry Steppe,Grassland,vert,StdDev of Biomass,NA
+Great Plains Palouse Dry Steppe,Grassland,vert,CV of Biomass,3.71770867
+Conterminous United States,Shrubland,horiz_comp,Prop. Barren,4.773990406
+Conterminous United States,Shrubland,horiz_comp,Prop. Cultivated Crops,5.798483756
+Conterminous United States,Shrubland,horiz_comp,Prop. Deciduous Forest,13.42736031
+Conterminous United States,Shrubland,horiz_comp,Prop. Evergreen Forest,NA
+Conterminous United States,Shrubland,horiz_comp,Prop. Mixed Forest,3.552313374
+Conterminous United States,Shrubland,horiz_comp,Prop. Developed,NA
+Conterminous United States,Shrubland,horiz_comp,Prop. Herbaceous Wetland,NA
+Conterminous United States,Shrubland,horiz_comp,Prop. Woody Wetland,4.359489807
+Conterminous United States,Shrubland,horiz_comp,Prop. Open Water,NA
+Conterminous United States,Shrubland,horiz_comp,Prop. Pasture,NA
+Conterminous United States,Shrubland,horiz_comp,Prop. ScrubShrub,NA
+Conterminous United States,Shrubland,horiz_comp,Number of Land Cover Classes,4.047488433
+Conterminous United States,Shrubland,horiz_comp,Shannon Diversity of Land Cover Classes,NA
+Conterminous United States,Shrubland,horiz_config,Forest Edge,14.19537897
+Conterminous United States,Shrubland,horiz_config,Shrubland Core,5.356711911
+Conterminous United States,Shrubland,horiz_config,Shrubland Edge,4.023253497
+Conterminous United States,Shrubland,horiz_config,Grassland Core Area,11.37963823
+Conterminous United States,Shrubland,horiz_config,Grassland Edge Area,NA
+Conterminous United States,Shrubland,vert,Mean Canopy Height,14.42474462
+Conterminous United States,Shrubland,vert,StdDev of Canopy Height,14.66114669
+Conterminous United States,Shrubland,vert,Mean Biomass,NA
+Conterminous United States,Shrubland,vert,StdDev of Biomass,NA
+Conterminous United States,Shrubland,vert,CV of Biomass,NA
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Barren,NA
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Cultivated Crops,NA
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Deciduous Forest,NA
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Evergreen Forest,8.55804091
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Mixed Forest,1.96885484
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Developed,12.02775748
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Herbaceous Wetland,2.88940148
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Woody Wetland,NA
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Open Water,NA
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. Pasture,4.88189201
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Prop. ScrubShrub,NA
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Number of Land Cover Classes,3.0553446
+Eastern Broadleaf Forest,Shrubland,horiz_comp,Shannon Diversity of Land Cover Classes,NA
+Eastern Broadleaf Forest,Shrubland,horiz_config,Forest Edge,NA
+Eastern Broadleaf Forest,Shrubland,horiz_config,Shrubland Core,NA
+Eastern Broadleaf Forest,Shrubland,horiz_config,Shrubland Edge,NA
+Eastern Broadleaf Forest,Shrubland,horiz_config,Grassland Core Area,NA
+Eastern Broadleaf Forest,Shrubland,horiz_config,Grassland Edge Area,NA
+Eastern Broadleaf Forest,Shrubland,vert,Mean Canopy Height,23.19505791
+Eastern Broadleaf Forest,Shrubland,vert,StdDev of Canopy Height,27.40700073
+Eastern Broadleaf Forest,Shrubland,vert,Mean Biomass,NA
+Eastern Broadleaf Forest,Shrubland,vert,StdDev of Biomass,NA
+Eastern Broadleaf Forest,Shrubland,vert,CV of Biomass,16.01665005
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Barren,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Cultivated Crops,8.89967013
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Deciduous Forest,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Evergreen Forest,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Mixed Forest,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Developed,18.03504862
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Herbaceous Wetland,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Woody Wetland,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Open Water,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. Pasture,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Prop. ScrubShrub,1.96451353
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Number of Land Cover Classes,0.68601287
+Central Appalachian Broadleaf Forest,Shrubland,horiz_comp,Shannon Diversity of Land Cover Classes,3.9631691
+Central Appalachian Broadleaf Forest,Shrubland,horiz_config,Forest Edge,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_config,Shrubland Core,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_config,Shrubland Edge,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_config,Grassland Core Area,NA
+Central Appalachian Broadleaf Forest,Shrubland,horiz_config,Grassland Edge Area,NA
+Central Appalachian Broadleaf Forest,Shrubland,vert,Mean Canopy Height,5.74719704
+Central Appalachian Broadleaf Forest,Shrubland,vert,StdDev of Canopy Height,60.26090387
+Central Appalachian Broadleaf Forest,Shrubland,vert,Mean Biomass,NA
+Central Appalachian Broadleaf Forest,Shrubland,vert,StdDev of Biomass,0.44348483
+Central Appalachian Broadleaf Forest,Shrubland,vert,CV of Biomass,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Barren,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Cultivated Crops,7.34456231
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Deciduous Forest,10.11470828
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Evergreen Forest,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Mixed Forest,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Developed,4.74867409
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Herbaceous Wetland,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Woody Wetland,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Open Water,7.28929889
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. Pasture,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Prop. ScrubShrub,6.63690782
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Number of Land Cover Classes,6.58638066
+Great Plains Palouse Dry Steppe,Shrubland,horiz_comp,Shannon Diversity of Land Cover Classes,19.17209171
+Great Plains Palouse Dry Steppe,Shrubland,horiz_config,Forest Edge,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_config,Shrubland Core,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_config,Shrubland Edge,NA
+Great Plains Palouse Dry Steppe,Shrubland,horiz_config,Grassland Core Area,4.93064644
+Great Plains Palouse Dry Steppe,Shrubland,horiz_config,Grassland Edge Area,7.70297108
+Great Plains Palouse Dry Steppe,Shrubland,vert,Mean Canopy Height,NA
+Great Plains Palouse Dry Steppe,Shrubland,vert,StdDev of Canopy Height,10.76337773
+Great Plains Palouse Dry Steppe,Shrubland,vert,Mean Biomass,4.05971221
+Great Plains Palouse Dry Steppe,Shrubland,vert,StdDev of Biomass,NA
+Great Plains Palouse Dry Steppe,Shrubland,vert,CV of Biomass,10.65066878

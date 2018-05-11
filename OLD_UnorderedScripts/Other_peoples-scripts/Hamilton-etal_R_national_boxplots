@@ -1,0 +1,139 @@
+################################################################################################
+#### Use national distance table and maximum difference table to create a matrix of boxplots####
+################################################################################################
+
+###### Set the working directory
+setwd("F:/DataF/chamilton/NWR_Land_Use_new/Analyses")
+
+#### Get the libraries for ggplot, grids, images, and graphics
+library(ggplot2)
+library(grDevices)
+library(gridExtra)
+library(ReadImages)
+library(RGraphics)
+
+
+##################################################################################################################################################
+######## Open the file for the difference boxplots from "F:\chamilton\NWR_Land_Use_new\Analyses\table_proportion_all_uses_scenarios_and_distances.txt"  
+scenario_distance = read.table(file.choose(), header = T)
+
+##### Create a new dataframe and select which variables to keep
+dat_2001_distances = data.frame(scenario_distance)
+
+#### Select the data for plot1 - Forest and Range in 2001 for each distance (5, 25, 75 km)
+FR_2001 = c("BAU_FR00_5km","BAU_FR00_25km","BAU_FR00_75km")
+
+### Save variables as new variable
+table_FR_2001 = dat_2001_distances[FR_2001]
+
+### Stack the FR00
+stack_table_FR_2001 = as.data.frame(stack(table_FR_2001))
+
+## Rename the columns
+colnames(stack_table_FR_2001) = c("FR_Values", "FR_Distances")
+
+#### Select the data for plot1 - Crop and Pasture in 2001 for each distance (5, 25, 75 km)
+CP_2001 = c("BAU_CP00_5km","BAU_CP00_25km","BAU_CP00_75km")
+
+### Save variables as new variable
+table_CP_2001 = dat_2001_distances[CP_2001]
+
+### Stack the CP00
+stack_table_CP_2001 = as.data.frame(stack(table_CP_2001))
+
+## Rename the columns
+colnames(stack_table_CP_2001) = c("CP_Values", "CP_Distances")
+
+#### Select the data for plot1 - Urban in 2001 for each distance (5, 25, 75 km)
+U_2001 = c("BAU_U00_5km","BAU_U00_25km","BAU_U00_75km")
+
+### Save variables as new variable
+table_U_2001 = dat_2001_distances[U_2001]
+
+### Stack the U00
+stack_table_U_2001 = as.data.frame(stack(table_U_2001))
+
+## Rename the columns
+colnames(stack_table_U_2001) = c("U_Values", "U_Distances")
+
+###### Bind the tables into a new table
+final_2001 = cbind(stack_table_FR_2001, stack_table_CP_2001, stack_table_U_2001)
+
+### Re-order the columns for the boxplots
+final_2001$FR_Distances = factor(final_2001$FR_Distances, levels(final_2001$FR_Distances)[c(2,1,3)])
+levels(final_2001$FR_Distances) = c("5km", "25km", "75km")
+final_2001$CP_Distances = factor(final_2001$CP_Distances, levels(final_2001$CP_Distances)[c(2,1,3)])
+levels(final_2001$CP_Distances) = c("5km", "25km", "75km")
+final_2001$U_Distances = factor(final_2001$U_Distances, levels(final_2001$U_Distances)[c(2,1,3)])
+levels(final_2001$U_Distances) = c("5km", "25km", "75km")
+
+
+#################### Row 1
+##plotdat
+plot1 = ggplot(final_2001, aes(factor(final_2001$FR_Distances), FR_Values, fill = FR_Distances)) + geom_boxplot() +
+scale_y_continuous(limits = c(0,100), breaks = seq(0,100,10)) +
+labs(x = " ", y = "2001 Forest/range land use (%)") + scale_fill_manual(values = c("#55FF00", "#55FF00", "#55FF00")) +
+opts(legend.position = "none", axis.title.x = theme_text(size = 10), axis.title.y = theme_text(angle = 90, size = 10), axis.text.x = theme_text(size = 10, colour = "black"), axis.text.y = theme_text(size = 10, colour = "black"))
+
+##
+plot2 = ggplot(final_2001, aes(factor(final_2001$CP_Distances), CP_Values, fill = CP_Distances)) + geom_boxplot() +
+scale_y_continuous(limits = c(0,100), breaks = seq(0,100,10)) +
+labs(x = " ", y = "2001 Crop/pasture land use(%)") + scale_fill_manual(values = c("#A900E6", "#A900E6", "#A900E6")) +
+opts(legend.position = "none", axis.title.x = theme_text(size = 10), axis.title.y = theme_text(angle = 90, size = 10), axis.text.x = theme_text(size = 10, colour = "black"), axis.text.y = theme_text(size = 10, colour = "black"))
+
+##
+plot3 = ggplot(final_2001, aes(factor(final_2001$U_Distances), U_Values, fill = U_Distances)) + geom_boxplot() +
+scale_y_continuous(limits = c(0,100), breaks = seq(0,100,10)) +
+labs(x = " ", y = "2001 Urban land use (%)") + scale_fill_manual(values = c("#FFAA00", "#FFAA00", "#FFAA00")) +
+opts(legend.position = "none", axis.title.x = theme_text(size = 10), axis.title.y = theme_text(angle = 90, size = 10), axis.text.x = theme_text(size = 10, colour = "black"), axis.text.y = theme_text(size = 10, colour = "black"))
+
+
+##################################################################################################################################################
+### Open the file for the difference boxplots from "F:\chamilton\NWR_Land_Use_new\Analyses\Difference_across_scales"  
+plot.difference = read.table(file.choose(), header = T)
+
+#########################################################################
+#### Begin the boxplotting
+
+### Re-order the columns for the boxplots
+
+plot.difference$FR_Scenarios = factor(plot.difference$FR_Scenarios, levels(plot.difference$FR_Scenarios)[c(2,1,3,4)])
+levels(plot.difference$FR_Scenarios) = c("2001", "BAU", "PNH", "RUG")
+plot.difference$CP_Scenarios = factor(plot.difference$CP_Scenarios, levels(plot.difference$CP_Scenarios)[c(2,1,3,4)])
+levels(plot.difference$CP_Scenarios) = c("2001", "BAU", "PNH", "RUG")
+plot.difference$U_Scenarios = factor(plot.difference$U_Scenarios, levels(plot.difference$U_Scenarios)[c(4,1,2,3)])
+levels(plot.difference$U_Scenarios) = c("2001", "BAU", "PNH", "RUG")
+
+#################### Row 2
+##plotdat
+plot4 = ggplot(plot.difference, aes(factor(plot.difference$FR_Scenarios), FR_Difference, fill = FR_Scenarios)) + geom_boxplot() +
+scale_y_continuous(limits = c(0,100), breaks = seq(0,100,10)) +
+labs(x = " ", y = "Forest/range max. difference (%)") + scale_fill_manual(values = c("white","#336699", "#99CC99", "#996666"), breaks = c("2001", "BAU", "PNH", "RUG"), labels=c("2001","Business-as-Usual","Preserve Natural Habitats","Restrict Urban Growth")) +
+opts(legend.position = "none", axis.title.y = theme_text(size = 10, angle = 90), axis.text.x = theme_text(size = 10), axis.text.y = theme_text(size = 10))
+
+##
+plot5 = ggplot(plot.difference, aes(factor(plot.difference$CP_Scenarios), CP_Difference, fill = CP_Scenarios)) + geom_boxplot() +
+scale_y_continuous(limits = c(0,100), breaks = seq(0,100,10)) +
+labs(x = " ", y = "Crop/pasture max. difference (%)") + scale_fill_manual(values = c("white","#336699", "#99CC99", "#996666"), breaks = c("2001", "BAU", "PNH", "RUG"), labels=c("2001","Business-as-Usual","Preserve Natural Habitats","Restrict Urban Growth")) +
+opts(legend.position = "none", axis.title.y = theme_text(size = 10, angle = 90), axis.text.x = theme_text(size = 10), axis.text.y = theme_text(size = 10))
+
+##
+plot6 = ggplot(plot.difference, aes(factor(plot.difference$U_Scenarios), U_Difference, fill = U_Scenarios)) + geom_boxplot() +
+scale_y_continuous(limits = c(0,100), breaks = seq(0,100,10)) +
+labs(x = " ", y = "Urban max. difference (%)") + scale_fill_manual(values = c("white","#336699", "#99CC99", "#996666"), breaks = c("2001", "BAU", "PNH", "RUG"), labels=c("2001","Business-as-Usual","Preserve Natural Habitats","Restrict Urban Growth")) +
+opts(legend.position = "none", axis.title.y = theme_text(size = 10, angle = 90), axis.text.x = theme_text(size = 10), axis.text.y = theme_text(size = 10))
+
+
+########################################################################################
+##### Name out output graphic, arrange the grid for the plot outputs, arrange a Grob, and close the png device
+png("Scale_and_difference_boxplots_portrait.png", width=7.5, height=7.5, units = "in", res=300)
+
+grid.arrange(arrangeGrob(plot1, plot2, plot3, nrow = 1, widths = c(2.5, 2.5, 2.5)),
+arrangeGrob(plot4, plot5, plot6, nrow = 1, widths = c(2.5, 2.5, 2.5)),
+nrow = 2, heights = c(3.75, 3.75))
+
+# close the graphic device
+dev.off()
+
+
+

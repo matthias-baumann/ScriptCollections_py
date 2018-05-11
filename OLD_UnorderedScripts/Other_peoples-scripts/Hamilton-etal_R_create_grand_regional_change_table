@@ -1,0 +1,149 @@
+#### Load package and set working directory
+setwd("F:/DataF/chamilton/NWR_Land_Use_new/Analyses")
+
+#### Read in table from F:/DataF/chamilton/NWR_Land_Use_new/Analyses/Data_files with "*<scenario>_regional_change.txt"
+dat <- read.table(file.choose(), header = T)
+str(dat)
+
+### Create new dataframe and select which variables to keep
+dat_BAU = data.frame(dat)
+
+## Keeper variables 
+BAU_data = c("FWSREGION", "FR00", "FRLOSS", "FRGAIN", "FR50", "CP00", "CPLOSS", "CPGAIN", "CP50", "U00", "ULOSS", "UGAIN", "U50")
+
+## Create new table
+table_2001_BAU = dat_BAU[BAU_data]
+table_2001_BAU
+
+## Re-name columns with the scenario
+colnames(table_2001_BAU) = c("FWSREGION", "BAU_FR00", "BAU_FRLOSS", "BAU_FRGAIN", "BAU_FR50", "BAU_CP00", "BAU_CPLOSS", "BAU_CPGAIN", "BAU_CP50", "BAU_U00", "BAU_ULOSS", "BAU_UGAIN", "BAU_U50")
+table_2001_BAU
+
+#### Open PNH regional change scenario table 
+dat2 <- read.table(file.choose(), header = T)
+dat2
+
+### Create new dataframe and select which variables to keep
+dat_PNH = data.frame(dat2)
+
+## Keeper variables 
+PNH_data = c("FR00", "FRLOSS", "FRGAIN", "FR50", "CP00", "CPLOSS", "CPGAIN", "CP50", "U00", "ULOSS", "UGAIN", "U50")
+
+## Create new table
+table_PNH = dat_PNH[PNH_data]
+table_PNH
+
+## Re-name columns with the scenario
+colnames(table_PNH) = c("PNH_FR00", "PNH_FRLOSS", "PNH_FRGAIN", "PNH_FR50", "PNH_CP00", "PNH_CPLOSS", "PNH_CPGAIN", "PNH_CP50", "PNH_U00", "PNH_ULOSS", "PNH_UGAIN", "PNH_U50")
+table_PNH
+
+## Bind PNH data to table_2001_BAU
+table_2001_BAU_PNH = cbind(table_2001_BAU, table_PNH)
+
+#### Open RUG regional change scenario table 
+dat3 <- read.table(file.choose(), header = T)
+dat3
+
+### Create new dataframe and select which variables to keep
+dat_RUG = data.frame(dat3)
+
+## Keeper variables 
+RUG_data = c("FR00", "FRLOSS", "FRGAIN", "FR50", "CP00", "CPLOSS", "CPGAIN", "CP50", "U00", "ULOSS", "UGAIN", "U50")
+
+## Create new table
+table_RUG = dat_RUG[RUG_data]
+table_RUG
+
+## Re-name columns with the scenario
+colnames(table_RUG) = c("RUG_FR00", "RUG_FRLOSS", "RUG_FRGAIN", "RUG_FR50", "RUG_CP00", "RUG_CPLOSS", "RUG_CPGAIN", "RUG_CP50", "RUG_U00", "RUG_ULOSS", "RUG_UGAIN", "RUG_U50")
+table_RUG
+
+## Bind RUGdata to table_2001_BAU
+table_2001_BAU_PNH_RUG = cbind(table_2001_BAU_PNH, table_RUG)
+table_2001_BAU_PNH_RUG
+str(table_2001_BAU_PNH_RUG)
+
+## Convert all values to millions of hectares
+columns = ncol(table_2001_BAU_PNH_RUG)
+for (hugeDick in 2:37){
+table_2001_BAU_PNH_RUG[,hugeDick] = table_2001_BAU_PNH_RUG[,hugeDick]/1000000
+}
+
+## Convert all LOSS variables to negative values
+LossList = c("BAU_FRLOSS", "BAU_CPLOSS", "BAU_ULOSS", "PNH_FRLOSS", "PNH_CPLOSS", "PNH_ULOSS", "RUG_FRLOSS", "RUG_CPLOSS", "RUG_ULOSS")
+for (i in LossList){
+table_2001_BAU_PNH_RUG[,i] = table_2001_BAU_PNH_RUG[,i] * (-1)
+}
+
+#######################################################################################################################################################################
+##### Add rate of change columns after the loops so they don't get divided by 1,000,000
+#####
+#### Read in table from F:/DataF/chamilton/NWR_Land_Use_new/Analyses/Data_files with "*<scenario>_regional_change.txt"
+dat4 <- read.table(file.choose(), header = T)
+str(dat4)
+
+### Create new dataframe and select which variables to keep
+dat_BAU_Change = data.frame(dat4)
+
+## Keeper variables 
+BAU_Change_data = c("FRCHANGEC", "CPCHANGEC", "UCHANGEC")
+
+## Create new table
+table_BAU_Change = dat_BAU_Change[BAU_Change_data]
+table_BAU_Change
+
+## Re-name columns with the scenario
+colnames(table_BAU_Change) = c("BAU_FRCHANGE", "BAU_CPCHANGE", "BAU_UCHANGE")
+table_BAU_Change
+
+## Bind BAU_Change data to table_2001_BAU
+table_2001_BAU_PNH_RUG_Change = cbind(table_2001_BAU_PNH_RUG, table_BAU_Change)
+
+#### Open PNH regional change scenario table 
+dat5 <- read.table(file.choose(), header = T)
+dat5
+
+### Create new dataframe and select which variables to keep
+dat_PNH_Change = data.frame(dat5)
+
+## Keeper variables 
+PNH_Change_data = c("FRCHANGEC", "CPCHANGEC", "UCHANGEC")
+
+## Create new table
+table_PNH_Change = dat_PNH_Change[PNH_Change_data]
+table_PNH_Change
+
+## Re-name columns with the scenario
+colnames(table_PNH_Change) = c("PNH_FRCHANGE", "PNH_CPCHANGE", "PNH_UCHANGE")
+table_PNH_Change
+
+## Bind PNH data to table_2001_BAU
+table_2001_BAU_PNH_RUG_Change = cbind(table_2001_BAU_PNH_RUG_Change, table_PNH_Change)
+
+#### Open RUG regional change scenario table 
+dat6 <- read.table(file.choose(), header = T)
+dat6
+
+### Create new dataframe and select which variables to keep
+dat_RUG_Change = data.frame(dat6)
+
+## Keeper variables 
+RUG_Change_data = c("FRCHANGEC", "CPCHANGEC", "UCHANGEC")
+
+## Create new table
+table_RUG_Change = dat_RUG_Change[RUG_Change_data]
+table_RUG_Change
+
+## Re-name columns with the scenario
+colnames(table_RUG_Change) = c("RUG_FRCHANGE", "RUG_CPCHANGE", "RUG_UCHANGE")
+table_RUG_Change
+
+## Bind RUGdata to table_2001_BAU
+table_2001_BAU_PNH_RUG_Change = cbind(table_2001_BAU_PNH_RUG_Change, table_RUG_Change)
+table_2001_BAU_PNH_RUG_Change
+str(table_2001_BAU_PNH_RUG_Change)
+
+# Write to a .txt file
+write.table(table_2001_BAU_PNH_RUG_Change, file = "Regional_2001_BAU_PNH_RUG_Change.txt", col.names = T, sep = " ")
+
+

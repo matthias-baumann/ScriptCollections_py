@@ -1,0 +1,33 @@
+PRO RESCALE
+
+; change to working folder
+; cd, 'PATH'
+
+;read image
+image = READ_BINARY('boston.bsq', DATA_TYPE = 1, DATA_DIMS = [2000,2000,6])
+
+newimage = image[*,*,4] ; subset spectrally
+
+;define windows size
+winsize = 10
+
+; define output image
+out = indgen(200, 200, /BYTE)
+
+; define counters
+i = 0 ; x-direction
+
+FOR x = 0, 1999, winsize DO BEGIN
+	j = 0 ; y-direction
+	FOR y = 0, 1999, winsize DO BEGIN
+		win = newimage[x:x+winsize-1, y:y+winsize-1]	; ; means "to"
+		print, win
+		out[i, j] = ROUND(MEAN(win))
+		print, i, j
+		j = j + 1
+	ENDFOR
+	i = i + 1
+	
+ENDFOR
+
+END ; this is the end of the program

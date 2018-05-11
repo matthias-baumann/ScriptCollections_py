@@ -1,0 +1,27 @@
+#### Change to working directory --> you can get this location by copying it from the address line ####
+cd, 'C:\Users\labuser\Desktop\My'
+
+#### Look at the struture of array
+help, NAME-OF-VARIABLE		--> get structure
+print, NAME-OF-VARIABLE		--> get content
+print, x[3:5]			---> get 3rd to 5th element of array
+
+
+
+#### Starts
+x = findgen(100) / 10		--> create a floating point array with 100 elements (will bring 0.00 to 99.00)
+y = sin(x)
+plot, x, y
+x = findgen(100,100)		--> 2D-array
+sub = x[0:49,0:49]		--> get subset from array (like in R)
+
+RS = randomu(S, 100, 100)	--> Create array with random numbers	--> s=seeking-parameter (has no meaning)
+print, 'mymax:', max(RS)
+
+tv, RS				--> display image from random numbers
+tvscl, RS			--> same, but with scaled values
+
+#### Open an image-file
+
+a = READ_BINARY('agriculture.bsq', DATA_TYPE = 1, DATA_DIMS = [1000,1000,6])		--> DATA_type  for '8-bit-files)
+b = a[*,*,0]										--> takes the first band (subset)

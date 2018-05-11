@@ -1,0 +1,134 @@
+#########################################################################
+#### Find maximum difference across scales for each scenario and land use for later input to create a matrix of boxplots
+#########################################################################
+
+###### Set the working directory
+setwd("F:/DataF/chamilton/NWR_Land_Use_new/Analyses")
+
+##### Open file from F:/DataF/chamilton/NWR_Land_Use_new/Analyses/table_proportion_all_uses_scenarios_and_distances.txt
+proportion_data = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select keeper variables
+dat_FR_differences = data.frame(proportion_data)
+
+### Keeper variables - scenario (BAU, PNH, RUG) + cover (FR, CP, U) + time (00, 50) + distance
+FR_diff = c("Refuge","Region","BAU_FR00_5km","BAU_FR00_25km","BAU_FR00_75km","BAU_FR50_5km","BAU_FR50_25km","BAU_FR50_75km","PNH_FR50_5km","PNH_FR50_25km","PNH_FR50_75km","RUG_FR50_5km","RUG_FR50_25km","RUG_FR50_75km")
+
+## Save variables as new variable - creates new table with only FWSREGION and 2001 Land Use
+table_FR_diff = dat_FR_differences[FR_diff]
+
+### Lets try to loop
+row = nrow(table_FR_diff)
+
+## Create the new columns that will be populated by the data and set their values to zero
+table_FR_diff$FR00_difference = 0
+table_FR_diff$BAU_FR50_difference = 0
+table_FR_diff$PNH_FR50_difference = 0
+table_FR_diff$RUG_FR50_difference = 0
+
+##### Loop to populate the "difference" columns we just added
+for (i in 1:row){
+	table_FR_diff[i,]$FR00_difference = max(table_FR_diff[i,3:5])-min(table_FR_diff[i,3:5])
+	table_FR_diff[i,]$BAU_FR50_difference = max(table_FR_diff[i,6:8])-min(table_FR_diff[i,6:8])
+	table_FR_diff[i,]$PNH_FR50_difference = max(table_FR_diff[i,9:11])-min(table_FR_diff[i,9:11])
+	table_FR_diff[i,]$RUG_FR50_difference = max(table_FR_diff[i,12:14])-min(table_FR_diff[i,12:14])
+}
+
+############# Stack FWS Regions and FR_
+stack_table_FR_diff = as.data.frame(stack(table_FR_diff, select = c("FR00_difference","BAU_FR50_difference","PNH_FR50_difference","RUG_FR50_difference")))
+
+##### Create an extra column for FWS Region and Refuge
+Refuge_column = as.data.frame(c(as.factor(table_FR_diff$"Refuge"),as.factor(table_FR_diff$"Refuge"),as.factor(table_FR_diff$"Refuge"),as.factor(table_FR_diff$"Refuge")))
+Region_column = as.data.frame(c(table_FR_diff$"Region",table_FR_diff$"Region",table_FR_diff$"Region",table_FR_diff$"Region"))
+
+### Create final table with scenario as a factor
+final_table_FR_diff = cbind(Refuge_column, Region_column, stack_table_FR_diff)
+
+# Name columns
+colnames(final_table_FR_diff) = c("Refuge","Region","FR_Difference","FR_Scenarios")
+
+##########################################################################################################################################
+###### Crop and Pasture differences by Scenario
+###################################################
+
+#### Create new dataframe and select keeper variables
+dat_CP_differences = data.frame(proportion_data)
+
+### Keeper variables - scenario (BAU, PNH, RUG) + cover (FR, CP, U) + time (00, 50) + distance
+CP_diff = c("Refuge","Region","BAU_CP00_5km","BAU_CP00_25km","BAU_CP00_75km","BAU_CP50_5km","BAU_CP50_25km","BAU_CP50_75km","PNH_CP50_5km","PNH_CP50_25km","PNH_CP50_75km","RUG_CP50_5km","RUG_CP50_25km","RUG_CP50_75km")
+
+## Save variables as new variable - creates new table with only FWSREGION and 2001 Land Use
+table_CP_diff = dat_CP_differences[CP_diff]
+
+### Lets try to loop
+row = nrow(table_CP_diff)
+
+## Create the new columns that will be populated by the data and set their values to zero
+table_CP_diff$CP00_difference = 0
+table_CP_diff$BAU_CP50_difference = 0
+table_CP_diff$PNH_CP50_difference = 0
+table_CP_diff$RUG_CP50_difference = 0
+
+##### Loop to populate the "difference" columns we just added
+for (i in 1:row){
+	table_CP_diff[i,]$CP00_difference = max(table_CP_diff[i,3:5])-min(table_CP_diff[i,3:5])
+	table_CP_diff[i,]$BAU_CP50_difference = max(table_CP_diff[i,6:8])-min(table_CP_diff[i,6:8])
+	table_CP_diff[i,]$PNH_CP50_difference = max(table_CP_diff[i,9:11])-min(table_CP_diff[i,9:11])
+	table_CP_diff[i,]$RUG_CP50_difference = max(table_CP_diff[i,12:14])-min(table_CP_diff[i,12:14])
+}
+
+############# Stack FWS Regions and CP_
+stack_table_CP_diff = as.data.frame(stack(table_CP_diff, select = c("CP00_difference","BAU_CP50_difference","PNH_CP50_difference","RUG_CP50_difference")))
+
+# Name columns
+colnames(stack_table_CP_diff) = c("CP_Difference","CP_Scenarios")
+
+
+##########################################################################################################################################
+###### Urban differences by Scenario
+###################################################
+
+#### Create new dataframe and select keeper variables
+dat_U_differences = data.frame(proportion_data)
+
+### Keeper variables - scenario (BAU, PNH, RUG) + cover (FR, CP, U) + time (00, 50) + distance
+U_diff = c("Refuge","Region","BAU_U00_5km","BAU_U00_25km","BAU_U00_75km","BAU_U50_5km","BAU_U50_25km","BAU_U50_75km","PNH_U50_5km","PNH_U50_25km","PNH_U50_75km","RUG_U50_5km","RUG_U50_25km","RUG_U50_75km")
+
+## Save variables as new variable - creates new table with only FWSREGION and 2001 Land Use
+table_U_diff = dat_U_differences[U_diff]
+
+### Lets try to loop
+row = nrow(table_U_diff)
+
+## Create the new columns that will be populated by the data and set their values to zero
+table_U_diff$U00_difference = 0
+table_U_diff$BAU_U50_difference = 0
+table_U_diff$PNH_U50_difference = 0
+table_U_diff$RUG_U50_difference = 0
+
+##### Loop to populate the "difference" columns we just added
+for (i in 1:row){
+	table_U_diff[i,]$U00_difference = max(table_U_diff[i,3:5])-min(table_U_diff[i,3:5])
+	table_U_diff[i,]$BAU_U50_difference = max(table_U_diff[i,6:8])-min(table_U_diff[i,6:8])
+	table_U_diff[i,]$PNH_U50_difference = max(table_U_diff[i,9:11])-min(table_U_diff[i,9:11])
+	table_U_diff[i,]$RUG_U50_difference = max(table_U_diff[i,12:14])-min(table_U_diff[i,12:14])
+}
+
+############# Stack FWS Regions and U_
+stack_table_U_diff = as.data.frame(stack(table_U_diff, select = c("U00_difference","BAU_U50_difference","PNH_U50_difference","RUG_U50_difference")))
+
+
+# Name columns
+colnames(stack_table_U_diff) = c("U_Difference","U_Scenarios")
+
+###################################################################################################################################################################
+#################  Bind all of the tables together into a single table and write the table to a text file
+
+final_difference_table = cbind(final_table_FR_diff, stack_table_CP_diff, stack_table_U_diff)
+# Write to a .txt file
+write.table(final_difference_table, file = "Difference_across_scales.txt", col.names = T, sep = " ")
+
+##################################################################
+##### Move to next script - create boxplots using the .txt file
+##################################################################
+

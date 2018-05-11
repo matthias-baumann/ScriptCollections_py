@@ -1,0 +1,666 @@
+###################################################
+###### Copy ylabels to each barplot options, remove tick marks, add gray background and major gridlines - just copy and paste, then change FR, CP, and U for axis title
+###### Create new rate of change plots
+###################################################
+
+
+#### Load package and set working directory
+library(ggplot2)
+library(grDevices) # allows you to export graphic in a high-resolution image
+setwd("F:/DataF/chamilton/NWR_Land_Use_new/Analyses")
+
+#### Read in table from F:/DataF/chamilton/NWR_Land_Use_new/Analyses/Regional_2001_BAU_PNH_RUG.txt"
+dat <- read.table(file.choose(), header = T)
+
+library(gridExtra)
+
+#### Create new dataframe and select which variables to keep
+dat_2001_FR = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_2001_FR = c("FWSREGION","BAU_FR00")
+
+## Save variables as new variable - creates new table with only FWSREGION and 2001 Land Use
+table_2001_FR = dat_2001_FR[BAU_2001_FR]
+
+## Add column names (default = no names)
+colnames(table_2001_FR) = c("Region", "Values")
+
+
+#### Now for the graphs
+#### Starting with Forest/Range land use
+
+### Make sure "Region" is a factor and presents in the correct order
+table_2001_FR$Region = factor(table_2001_FR$Region)
+
+### create the barplot
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  Find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot1 = ggplot(table_2001_FR, aes(factor(table_2001_FR$Region), Values, fill=Region)) + geom_bar(position="dodge") + 
+scale_y_continuous(limits = c(-3,14), breaks = seq(0,14,2)) +
+labs(x = " ", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour=NA), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Business-as-usual change-in-FR-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_BAU_CHANGE_FR = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_CHANGE_FR = c("FWSREGION","BAU_FRLOSS", "BAU_FRGAIN", "BAU_FR50")
+
+## Create new table with only FWSREGION and change columns
+table_BAU_CHANGE_FR = dat_BAU_CHANGE_FR[BAU_CHANGE_FR]
+table_BAU_CHANGE_FR
+
+## Add column names (default = no names)
+colnames(table_BAU_CHANGE_FR) = c("Region","Loss", "Gain", "2050")
+table_BAU_CHANGE_FR
+
+## Stack the data with Change as a factor
+stack_table_BAU_CHANGE_FR = as.data.frame(stack(table_BAU_CHANGE_FR, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_BAU_CHANGE_FR$"Region", table_BAU_CHANGE_FR$"Region", table_BAU_CHANGE_FR$"Region"))
+
+# Create final table
+final_table_BAU_CHANGE_FR = cbind(stack_table_BAU_CHANGE_FR, extra_column)
+final_table_BAU_CHANGE_FR
+
+# Rename columns again
+colnames(final_table_BAU_CHANGE_FR) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_BAU_CHANGE_FR$Region = as.factor(final_table_BAU_CHANGE_FR$Region)
+final_table_BAU_CHANGE_FR$Change = factor(final_table_BAU_CHANGE_FR$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot2 = ggplot(final_table_BAU_CHANGE_FR, aes(factor(final_table_BAU_CHANGE_FR$Change), Values, fill=Region)) + geom_bar(position="dodge") + 
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = " ", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Preserve native habitat change-in-FR-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_PNH_CHANGE_FR = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+PNH_CHANGE_FR = c("FWSREGION","PNH_FRLOSS", "PNH_FRGAIN", "PNH_FR50")
+
+## Create new table with only FWSREGION and change columns
+table_PNH_CHANGE_FR = dat_PNH_CHANGE_FR[PNH_CHANGE_FR]
+table_PNH_CHANGE_FR
+## Add column names (default = no names)
+colnames(table_PNH_CHANGE_FR) = c("Region","Loss", "Gain", "2050")
+table_PNH_CHANGE_FR
+
+## Stack the data with Change as a factor
+stack_table_PNH_CHANGE_FR = as.data.frame(stack(table_PNH_CHANGE_FR, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_PNH_CHANGE_FR$"Region", table_PNH_CHANGE_FR$"Region", table_PNH_CHANGE_FR$"Region"))
+
+# Create final table
+final_table_PNH_CHANGE_FR = cbind(stack_table_PNH_CHANGE_FR, extra_column)
+final_table_PNH_CHANGE_FR
+
+# Rename columns again
+colnames(final_table_PNH_CHANGE_FR) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_PNH_CHANGE_FR$Region = as.factor(final_table_PNH_CHANGE_FR$Region)
+final_table_PNH_CHANGE_FR$Change = factor(final_table_PNH_CHANGE_FR$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot3 = ggplot(final_table_PNH_CHANGE_FR, aes(factor(final_table_PNH_CHANGE_FR$Change), Values, fill=Region)) + geom_bar(position="dodge") + 
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = " ", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Restricted urban growth scenario change-in-FR-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_RUG_CHANGE_FR = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+RUG_CHANGE_FR = c("FWSREGION","RUG_FRLOSS", "RUG_FRGAIN", "RUG_FR50")
+
+## Create new table with only FWSREGION and change columns
+table_RUG_CHANGE_FR = dat_RUG_CHANGE_FR[RUG_CHANGE_FR]
+table_RUG_CHANGE_FR
+
+## Present LOSS as negative and all values as millions of ha
+table_RUG_CHANGE_FR$FRLOSS = (table_RUG_CHANGE_FR$FRLOSS/1000000) * (-1)
+table_RUG_CHANGE_FR$FRGAIN = (table_RUG_CHANGE_FR$FRGAIN/1000000) 
+table_RUG_CHANGE_FR$FR50 = (table_RUG_CHANGE_FR$FR50/1000000) 
+table_RUG_CHANGE_FR
+
+## Add column names (default = no names)
+colnames(table_RUG_CHANGE_FR) = c("Region","Loss", "Gain", "2050")
+table_RUG_CHANGE_FR
+
+## Stack the data with Change as a factor
+stack_table_RUG_CHANGE_FR = as.data.frame(stack(table_RUG_CHANGE_FR, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_RUG_CHANGE_FR$"Region", table_RUG_CHANGE_FR$"Region", table_RUG_CHANGE_FR$"Region"))
+
+# Create final table
+final_table_RUG_CHANGE_FR = cbind(stack_table_RUG_CHANGE_FR, extra_column)
+final_table_RUG_CHANGE_FR
+
+# Rename columns again
+colnames(final_table_RUG_CHANGE_FR) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_RUG_CHANGE_FR$Region = as.factor(final_table_RUG_CHANGE_FR$Region)
+final_table_RUG_CHANGE_FR$Change = factor(final_table_RUG_CHANGE_FR$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot4 = ggplot(final_table_RUG_CHANGE_FR, aes(factor(final_table_RUG_CHANGE_FR$Change), Values, fill=Region)) + geom_bar(position="dodge") + 
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = " ", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########################################################################################################################################################################################
+########## Begin second row of plots - Crop/Pasture land use and land use change by scenario
+#### Create new dataframe and select which variables to keep
+dat_2001_CP = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_2001_CP = c("FWSREGION","BAU_CP00")
+
+## Save variables as new variable - creates new table with only FWSREGION and 2001 Land Use
+table_2001 = dat_2001_CP[BAU_2001_CP]
+table_2001
+
+## Add column names (default = no names)
+colnames(table_2001) = c("Region", "Values")
+
+## Display the table that has been created
+table_2001
+
+#### Now for the graphs
+#### Starting with Forest/Range land use
+
+### Make sure "Region" is a factor and presents in the correct order
+table_2001$Region = factor(table_2001$Region)
+
+### create the barplot
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  Find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot5 = ggplot(table_2001, aes(factor(table_2001$Region), Values, fill=Region)) + geom_bar(position="dodge") + 
+scale_y_continuous(limits = c(-3,14), breaks = seq(0,14,2)) +
+labs(x = "", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour=NA), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+
+##########
+#### Business-as-usual change-in-CP-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_BAU_CHANGE_CP = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_CHANGE_CP = c("FWSREGION","BAU_CPLOSS", "BAU_CPGAIN", "BAU_CP50")
+
+## Create new table with only FWSREGION and change columns
+table_BAU_CHANGE_CP = dat_BAU_CHANGE_CP[BAU_CHANGE_CP]
+table_BAU_CHANGE_CP
+
+## Add column names (default = no names)
+colnames(table_BAU_CHANGE_CP) = c("Region","Loss", "Gain", "2050")
+table_BAU_CHANGE_CP
+
+## Stack the data with Change as a factor
+stack_table_BAU_CHANGE_CP = as.data.frame(stack(table_BAU_CHANGE_CP, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_BAU_CHANGE_CP$"Region", table_BAU_CHANGE_CP$"Region", table_BAU_CHANGE_CP$"Region"))
+
+# Create final table
+final_table_BAU_CHANGE_CP = cbind(stack_table_BAU_CHANGE_CP, extra_column)
+final_table_BAU_CHANGE_CP
+
+# Rename columns again
+colnames(final_table_BAU_CHANGE_CP) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_BAU_CHANGE_CP$Region = as.factor(final_table_BAU_CHANGE_CP$Region)
+final_table_BAU_CHANGE_CP$Change = factor(final_table_BAU_CHANGE_CP$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot6 = ggplot(final_table_BAU_CHANGE_CP, aes(factor(final_table_BAU_CHANGE_CP$Change), Values, fill=Region)) + geom_bar(position="dodge") +
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = "", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Preserve native habitat change-in-CP-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_PNH_CHANGE_CP = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+PNH_CHANGE_CP = c("FWSREGION","PNH_CPLOSS", "PNH_CPGAIN", "PNH_CP50")
+
+## Create new table with only FWSREGION and change columns
+table_PNH_CHANGE_CP = dat_PNH_CHANGE_CP[PNH_CHANGE_CP]
+table_PNH_CHANGE_CP
+## Add column names (default = no names)
+colnames(table_PNH_CHANGE_CP) = c("Region","Loss", "Gain", "2050")
+table_PNH_CHANGE_CP
+
+## Stack the data with Change as a factor
+stack_table_PNH_CHANGE_CP = as.data.frame(stack(table_PNH_CHANGE_CP, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_PNH_CHANGE_CP$"Region", table_PNH_CHANGE_CP$"Region", table_PNH_CHANGE_CP$"Region"))
+
+# Create final table
+final_table_PNH_CHANGE_CP = cbind(stack_table_PNH_CHANGE_CP, extra_column)
+final_table_PNH_CHANGE_CP
+
+# Rename columns again
+colnames(final_table_PNH_CHANGE_CP) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_PNH_CHANGE_CP$Region = as.factor(final_table_PNH_CHANGE_CP$Region)
+final_table_PNH_CHANGE_CP$Change = factor(final_table_PNH_CHANGE_CP$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot7 = ggplot(final_table_PNH_CHANGE_CP, aes(factor(final_table_PNH_CHANGE_CP$Change), Values, fill=Region)) + geom_bar(position="dodge") +
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = "", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Restricted urban growth scenario change-in-CP-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_RUG_CHANGE_CP = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+RUG_CHANGE_CP = c("FWSREGION","RUG_CPLOSS", "RUG_CPGAIN", "RUG_CP50")
+
+## Create new table with only FWSREGION and change columns
+table_RUG_CHANGE_CP = dat_RUG_CHANGE_CP[RUG_CHANGE_CP]
+table_RUG_CHANGE_CP
+
+## Add column names (default = no names)
+colnames(table_RUG_CHANGE_CP) = c("Region","Loss", "Gain", "2050")
+table_RUG_CHANGE_CP
+
+## Stack the data with Change as a factor
+stack_table_RUG_CHANGE_CP = as.data.frame(stack(table_RUG_CHANGE_CP, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_RUG_CHANGE_CP$"Region", table_RUG_CHANGE_CP$"Region", table_RUG_CHANGE_CP$"Region"))
+
+# Create final table
+final_table_RUG_CHANGE_CP = cbind(stack_table_RUG_CHANGE_CP, extra_column)
+final_table_RUG_CHANGE_CP
+
+# Rename columns again
+colnames(final_table_RUG_CHANGE_CP) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_RUG_CHANGE_CP$Region = as.factor(final_table_RUG_CHANGE_CP$Region)
+final_table_RUG_CHANGE_CP$Change = factor(final_table_RUG_CHANGE_CP$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot8 = ggplot(final_table_RUG_CHANGE_CP, aes(factor(final_table_RUG_CHANGE_CP$Change), Values, fill=Region)) + geom_bar(position="dodge") +
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = "", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########################################################################################################################################################################################
+########## Begin third row of plots - Urban land use and land use change by scenario
+#### Create new dataframe and select which variables to keep
+dat_2001_U = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_2001_U = c("FWSREGION","BAU_U00")
+
+## Save variables as new variable - creates new table with only FWSREGION and 2001 Land Use
+table_2001 = dat_2001_U[BAU_2001_U]
+table_2001
+
+## Add column names (default = no names)
+colnames(table_2001) = c("Region", "Values")
+
+## Display the table that has been created
+table_2001
+
+#### Now for the graphs
+#### Starting with Forest/Range land use
+
+### Make sure "Region" is a factor and presents in the correct order
+table_2001$Region = factor(table_2001$Region)
+
+### create the barplot
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  Find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot9 = ggplot(table_2001, aes(factor(table_2001$Region), Values, fill=Region)) + geom_bar(position="dodge") +
+scale_y_continuous(limits = c(-3,14), breaks = seq(0,14,2)) +
+labs(x = "", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour=NA), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+
+##########
+#### Business-as-usual change-in-U-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_BAU_CHANGE_U = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_CHANGE_U = c("FWSREGION","BAU_ULOSS", "BAU_UGAIN", "BAU_U50")
+
+## Create new table with only FWSREGION and change columns
+table_BAU_CHANGE_U = dat_BAU_CHANGE_U[BAU_CHANGE_U]
+table_BAU_CHANGE_U
+
+## Add column names (default = no names)
+colnames(table_BAU_CHANGE_U) = c("Region","Loss", "Gain", "2050")
+table_BAU_CHANGE_U
+
+## Stack the data with Change as a factor
+stack_table_BAU_CHANGE_U = as.data.frame(stack(table_BAU_CHANGE_U, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_BAU_CHANGE_U$"Region", table_BAU_CHANGE_U$"Region", table_BAU_CHANGE_U$"Region"))
+
+# Create final table
+final_table_BAU_CHANGE_U = cbind(stack_table_BAU_CHANGE_U, extra_column)
+final_table_BAU_CHANGE_U
+
+# Rename columns again
+colnames(final_table_BAU_CHANGE_U) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_BAU_CHANGE_U$Region = as.factor(final_table_BAU_CHANGE_U$Region)
+final_table_BAU_CHANGE_U$Change = factor(final_table_BAU_CHANGE_U$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot10 = ggplot(final_table_BAU_CHANGE_U, aes(factor(final_table_BAU_CHANGE_U$Change), Values, fill=Region)) + geom_bar(position="dodge") + 
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = "", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Preserve native habitat change-in-U-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_PNH_CHANGE_U = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+PNH_CHANGE_U = c("FWSREGION","PNH_ULOSS", "PNH_UGAIN", "PNH_U50")
+
+## Create new table with only FWSREGION and change columns
+table_PNH_CHANGE_U = dat_PNH_CHANGE_U[PNH_CHANGE_U]
+table_PNH_CHANGE_U
+## Add column names (default = no names)
+colnames(table_PNH_CHANGE_U) = c("Region","Loss", "Gain", "2050")
+table_PNH_CHANGE_U
+
+## Stack the data with Change as a factor
+stack_table_PNH_CHANGE_U = as.data.frame(stack(table_PNH_CHANGE_U, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_PNH_CHANGE_U$"Region", table_PNH_CHANGE_U$"Region", table_PNH_CHANGE_U$"Region"))
+
+# Create final table
+final_table_PNH_CHANGE_U = cbind(stack_table_PNH_CHANGE_U, extra_column)
+final_table_PNH_CHANGE_U
+
+# Rename columns again
+colnames(final_table_PNH_CHANGE_U) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_PNH_CHANGE_U$Region = as.factor(final_table_PNH_CHANGE_U$Region)
+final_table_PNH_CHANGE_U$Change = factor(final_table_PNH_CHANGE_U$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot11 = ggplot(final_table_PNH_CHANGE_U, aes(factor(final_table_PNH_CHANGE_U$Change), Values, fill=Region)) + geom_bar(position="dodge") + 
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = "", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Restricted urban growth scenario change-in-U-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_RUG_CHANGE_U = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+RUG_CHANGE_U = c("FWSREGION","RUG_ULOSS", "RUG_UGAIN", "RUG_U50")
+
+## Create new table with only FWSREGION and change columns
+table_RUG_CHANGE_U = dat_RUG_CHANGE_U[RUG_CHANGE_U]
+table_RUG_CHANGE_U
+
+## Add column names (default = no names)
+colnames(table_RUG_CHANGE_U) = c("Region","Loss", "Gain", "2050")
+table_RUG_CHANGE_U
+
+## Stack the data with Change as a factor
+stack_table_RUG_CHANGE_U = as.data.frame(stack(table_RUG_CHANGE_U, select = c("Loss","Gain","2050")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_RUG_CHANGE_U$"Region", table_RUG_CHANGE_U$"Region", table_RUG_CHANGE_U$"Region"))
+
+# Create final table
+final_table_RUG_CHANGE_U = cbind(stack_table_RUG_CHANGE_U, extra_column)
+final_table_RUG_CHANGE_U
+
+# Rename columns again
+colnames(final_table_RUG_CHANGE_U) = c("Values","Change", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_RUG_CHANGE_U$Region = as.factor(final_table_RUG_CHANGE_U$Region)
+final_table_RUG_CHANGE_U$Change = factor(final_table_RUG_CHANGE_U$Change, levels = c("Loss", "Gain", "2050"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot12 = ggplot(final_table_RUG_CHANGE_U, aes(factor(final_table_RUG_CHANGE_U$Change), Values, fill=Region)) + geom_bar(position="dodge") + 
+scale_y_continuous(limits = c(-3,14), breaks = seq(-2,14,2)) +
+labs(x = "", y = "Area [mil. ha]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+
+#############################################################################################################################################################
+##########
+#### Business-as-usual rate-of-change-in-U-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_BAU_CHANGE_RATE = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_CHANGE_RATE = c("FWSREGION","BAU_FRCHANGE", "BAU_CPCHANGE", "BAU_UCHANGE")
+
+## Create new table with only FWSREGION and change columns
+table_BAU_CHANGE_RATE = dat_BAU_CHANGE_RATE[BAU_CHANGE_RATE]
+table_BAU_CHANGE_RATE
+
+## Add column names (default = no names)
+colnames(table_BAU_CHANGE_RATE) = c("Region","FR", "CP", "U")
+table_BAU_CHANGE_RATE
+
+## Stack the data with Change as a factor
+stack_table_BAU_CHANGE_RATE = as.data.frame(stack(table_BAU_CHANGE_RATE, select = c("FR","CP", "U")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_BAU_CHANGE_RATE$"Region", table_BAU_CHANGE_RATE$"Region", table_BAU_CHANGE_RATE$"Region"))
+
+# Create final table
+final_table_BAU_CHANGE_RATE = cbind(stack_table_BAU_CHANGE_RATE, extra_column)
+final_table_BAU_CHANGE_RATE
+
+# Rename columns again
+colnames(final_table_BAU_CHANGE_RATE) = c("Values","Landuse","Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_BAU_CHANGE_RATE$Region = as.factor(final_table_BAU_CHANGE_RATE$Region)
+final_table_BAU_CHANGE_RATE$Landuse = factor(final_table_BAU_CHANGE_RATE$Landuse, levels = c("FR","CP", "U"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot13 = ggplot(final_table_BAU_CHANGE_RATE, aes(factor(final_table_BAU_CHANGE_RATE$Landuse), Values, fill=Region)) + geom_bar(position="dodge") +
+scale_y_continuous(limits = c(-40,90), breaks = seq(-40,90,20)) +
+labs(x = "", y = "Rate of Change [%]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Preserve native habitat rate-of-change-in-U-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_PNH_CHANGE_RATE = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+PNH_CHANGE_RATE = c("FWSREGION","PNH_FRCHANGE", "PNH_CPCHANGE", "PNH_UCHANGE")
+
+## Create new table with only FWSREGION and change columns
+table_PNH_CHANGE_RATE = dat_PNH_CHANGE_RATE[PNH_CHANGE_RATE]
+table_PNH_CHANGE_RATE
+## Add column names (default = no names)
+colnames(table_PNH_CHANGE_RATE) = c("Region","FR","CP", "U")
+table_PNH_CHANGE_RATE
+
+## Stack the data with Change as a factor
+stack_table_PNH_CHANGE_RATE = as.data.frame(stack(table_PNH_CHANGE_RATE, select = c("FR","CP", "U")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_PNH_CHANGE_RATE$"Region", table_PNH_CHANGE_RATE$"Region", table_PNH_CHANGE_RATE$"Region"))
+
+# Create final table
+final_table_PNH_CHANGE_RATE = cbind(stack_table_PNH_CHANGE_RATE, extra_column)
+final_table_PNH_CHANGE_RATE
+
+# Rename columns again
+colnames(final_table_PNH_CHANGE_RATE) = c("Values","Landuse", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_PNH_CHANGE_RATE$Region = as.factor(final_table_PNH_CHANGE_RATE$Region)
+final_table_PNH_CHANGE_RATE$Landuse = factor(final_table_PNH_CHANGE_RATE$Landuse, levels = c("FR","CP", "U"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot14 = ggplot(final_table_PNH_CHANGE_RATE, aes(factor(final_table_PNH_CHANGE_RATE$Landuse), Values, fill=Region)) + geom_bar(position="dodge") +
+scale_y_continuous(limits = c(-40,90), breaks = seq(-40,90,20)) +
+labs(x = "", y = "Rate of Change [%]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+##########
+#### Restricted urban growth scenario rate-of-change-in-U-area bar plot
+#### Create new dataframe and select which variables to keep
+dat_RUG_CHANGE_RATE = data.frame(dat)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + change (2001 [i.e. "starting conditon"], CHANGE) + cover (FR, CP, U)
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+RUG_CHANGE_RATE = c("FWSREGION","RUG_FRCHANGE", "RUG_CPCHANGE", "RUG_UCHANGE")
+
+## Create new table with only FWSREGION and change columns
+table_RUG_CHANGE_RATE = dat_RUG_CHANGE_RATE[RUG_CHANGE_RATE]
+table_RUG_CHANGE_RATE
+
+## Add column names (default = no names)
+colnames(table_RUG_CHANGE_RATE) = c("Region","FR","CP", "U")
+table_RUG_CHANGE_RATE
+
+## Stack the data with Change as a factor
+stack_table_RUG_CHANGE_RATE = as.data.frame(stack(table_RUG_CHANGE_RATE, select = c("FR","CP", "U")))
+
+## Create an extra column with FWSREGION corresponding to each set of stacked data
+extra_column = as.data.frame(c(table_RUG_CHANGE_RATE$"Region", table_RUG_CHANGE_RATE$"Region", table_RUG_CHANGE_RATE$"Region"))
+
+# Create final table
+final_table_RUG_CHANGE_RATE = cbind(stack_table_RUG_CHANGE_RATE, extra_column)
+final_table_RUG_CHANGE_RATE
+
+# Rename columns again
+colnames(final_table_RUG_CHANGE_RATE) = c("Values","Landuse", "Region")
+
+### Make sure "REGION" is a factor and presents in the correct order
+final_table_RUG_CHANGE_RATE$Region = as.factor(final_table_RUG_CHANGE_RATE$Region)
+final_table_RUG_CHANGE_RATE$Landuse = factor(final_table_RUG_CHANGE_RATE$Landuse, levels = c("FR","CP", "U"))
+
+## Color palette and code for legend colors at:  http://wiki.stdout.org/rcookbook/Graphs/Colors%20(ggplot2)#Palettes:_Color_Brewer
+## ggplot 2 uses hexadecimal color system.  You can find a VERY handy RGB-to-hexadecimal converter at:  http://www.rgbtohex.net/
+plot15 = ggplot(final_table_RUG_CHANGE_RATE, aes(factor(final_table_RUG_CHANGE_RATE$Landuse), Values, fill=Region)) + geom_bar(position="dodge") +
+scale_y_continuous(limits = c(-40,90), breaks = seq(-40,90,20)) +
+labs(x = "", y = "Rate of Change [%]") + scale_fill_manual(values = c("#404DAD","#A82E36","#ABCD66","#704489","#00ABBA","#F08F36","#9EAAD7")) +  
+opts(legend.position = "none", legend.direction = "", 
+axis.title.x = theme_text(colour = NA, size = 1), axis.text.x = theme_text(colour="black"), axis.title.y = theme_text(angle = 90, colour = "black", size = 10), axis.text.y = theme_text(size = 10, colour = "black"), axis.ticks = theme_blank(), axis.line = theme_segment(),
+panel.grid.minor = theme_blank(), panel.background = theme_rect(colour="black", fill = "#DDDDDD"))
+
+####### Add libraries necessary to create graphic objects
+library(ReadImages)
+library(gridExtra)
+library(RGraphics)
+
+#### Read in the jpeg of the map with USFWS administrative regions
+map = read.jpeg(file.choose())
+
+#### Create textGrobs
+emptyText = textGrob(" ")
+text2001  = textGrob("2001", gp = gpar(fontface = "bold", fontsize = 14))
+textBAU = textGrob("Business as usual", gp = gpar(fontface = "bold", fontsize = 14))
+textPNH = textGrob("Preserve natural habitats", gp = gpar(fontface = "bold", fontsize = 14))
+textRUG = textGrob("Restricted urban growth", gp = gpar(fontface = "bold", fontsize = 14))
+textFR = textGrob("Forest/Range", rot = 90, gp = gpar(fontface = "bold", fontsize = 14))
+textCP = textGrob("Crop/Pasture", rot = 90, gp = gpar(fontface = "bold", fontsize = 14))
+textU = textGrob("Urban", rot = 90, gp = gpar(fontface = "bold", fontsize = 14))
+
+#### Name out output graphic, arrange the grid for the plot outputs, arrange a Grob, and close the png device
+png("Change_out.png", width=10, height=10,units = "in", res=300)
+grid.arrange(arrangeGrob(emptyText, text2001, textBAU, textPNH, textRUG, nrow=1, widths = c(0.35,1.01,1.88,1.88,1.88)),
+arrangeGrob(textFR, plot1, plot2, plot3, plot4, nrow = 1, widths = c(0.35,1.01,1.88,1.88,1.88)),
+arrangeGrob(textCP, plot5, plot6, plot7, plot8, nrow = 1, widths = c(0.35,1.01,1.88,1.88,1.88)),
+arrangeGrob(textU, plot9, plot10, plot11, plot12, nrow = 1, widths = c(0.35,1.01,1.88,1.88,1.88)),
+arrangeGrob(rasterGrob(map), plot13, plot14, plot15, nrow=1, widths= c(1.36,1.88,1.88,1.88)), nrow=5, heights = c(2/42,10/42,10/42,10/42,10/42))
+dev.off()

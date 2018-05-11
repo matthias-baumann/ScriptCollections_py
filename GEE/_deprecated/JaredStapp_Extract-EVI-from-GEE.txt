@@ -1,0 +1,156 @@
+//############################################
+//## EXTRACT LANDSAT TIME SERIES FOR POINTS ##
+//## Jared Stapp, UC Berkeley, July 6, 2016 ##
+//## stappjared@gmail.com                   ##
+//############################################
+
+// Turn off print commands below when not needed. They are expensive to run and can lag.
+// Processing large collections can return errors in the console. Regardless, 
+// The export task will still run when initialized. It might take a while depending on the 
+// number of scenes, number of bands per scene, and number of points. 
+
+//////////////////////////////////////////////////
+// SET SOME PROCESSING FUNCTIONS AND PARAMETERS //
+//////////////////////////////////////////////////
+
+// Load fusion table with points (or other features from a table or digitized here)
+var points = ee.FeatureCollection('ft:1zF7hIhfS3EYBc69JITESh8esPh-365CRtUfBBsLh');
+
+// Set time range and max cloud cover allowance for filtering Landsat archives
+var startDate = '2005-06-01';
+var endDate = '2005-6-15';
+var maxCloudPerc = 80;
+
+// Function to mask every cloudy and invalid pixel of a LEDAPS collection
+var maskBadData = function(img) {
+  var invalid = img.select('QA').bitwiseAnd(0x6).neq(0);
+  var clean = img.mask(invalid.not());
+  return clean;
+};
+
+// Replace numeric band names with names common accross sensors
+var bandNames = ee.List(['BLUE', 'GREEN', 'RED', 'NIR', 'SWIR1', 'SWIR2']);
+
+// Band combinations for each sensor corresponding to band names
+var LandsatBandsDict = ee.Dictionary({
+	L4: ee.List([0, 1, 2, 3, 4, 5]), // No band 6 in SR data. '5' here refers to 'B7' if TOA was used
+	L5: ee.List([0, 1, 2, 3, 4, 5]), // No band 6 in SR data. '5' here refers to 'B7' if TOA was used
+	L7: ee.List([0, 1, 2, 3, 4, 5]), // No band 6 in SR data. '5' here refers to 'B7' if TOA was used (there are 2x 'B6')
+	L8: ee.List([1, 2, 3, 4, 5, 6])
+});
+
+// Add Tasseled Cap and other common indices
+function addIndices(img) {
+	var bands = img.select('BLUE', 'GREEN', 'RED', 'NIR', 'SWIR1', 'SWIR2');
+  var brightness= ee.Image([0.2043, 0.4158, 0.5524, 0.5741, 0.3124, 0.2303]); // Use same coefficients for all sensors since they are SR data
+  var greenness= ee.Image([-0.1603, -0.2819, -0.4934, 0.7940, -0.0002, -0.1446]); // Use same coefficients for all sensors since they are SR data
+  var wetness= ee.Image([0.0315, 0.2021, 0.3102, 0.1594, -0.6806, -0.6109]); // Use same coefficients for all sensors since they are SR data
+  var sum = ee.call("Reducer.sum"); // Name the reducer to apply
+  var TCB = bands.multiply(brightness).reduce(sum); // Tasseled Cap Brightness
+  var TCG = bands.multiply(greenness).reduce(sum); // Tasseled Cap Greenness
+  var TCW = bands.multiply(wetness).reduce(sum); // Tasseled Cap Wetness
+	var TCA = bands.multiply(TCG).divide(TCB).reduce(sum); // Tasseled Cap Angle
+//	img = img.addBands(img.normalizedDifference(['NIR', 'RED']).select([0], ['NDVI'])); // Normalized Difference Vegetation Index
+	img = img.addBands(img.normalizedDifference(['NIR', 'SWIR1']).select([0], ['NDMI'])); // Normalized Difference Moisture Index
+	img = img.addBands(img.normalizedDifference(['GREEN', 'NIR']).select([0], ['NDWI'])); // Normalized Difference Water Index
+  img = img.addBands(img.normalizedDifference(['NIR', 'SWIR2']).select([0], ['NBR'])); // Normalized Burn Ratio
+	img = img.addBands(img.normalizedDifference(['SWIR1', 'SWIR2']).select([0], ['NBR2'])); // Normalized Burn Ratio 2
+	img = img.addBands(img.expression("(( b('NIR') - b('RED') ) /( b('NIR') +6* b('RED') -7.5* b('BLUE') +1))").select([0],['EVI'])); // Enhanced Vegetation Index
+	img = img.addBands(img.expression("(1 + L) * float(b('NIR') - b('RED'))/ (b('NIR') + b('RED') + L)", {'L': 0.2}).select([0],['SAVI'])); // Soil-Adjusted Vegetation Index
+	return img.addBands(TCB.select([0], ['TCB']))
+            .addBands(TCG.select([0], ['TCG']))
+            .addBands(TCW.select([0], ['TCW']))
+            .addBands(TCA.select([0], ['TCA']))
+            .addBands(img.metadata('system:time_start').select([0], ['DATE']));
+}
+
+/////////////////////////////
+// GET LANDSAT COLLECTIONS //
+///////////////////////////// 
+
+// To filter by specific path or row, use:
+// .filterMetadata('WRS_PATH', 'equals', 228)
+// .filterMetadata('WRS_ROW', 'equals', 77)
+
+// Landsat 8 OLI: Standard USGS SR product using the L8SR algorithm
+var L8 = ee.ImageCollection('LANDSAT/LC8_SR')
+    .filterBounds(points)
+    .filterDate(startDate, endDate)
+    .filter(ee.Filter.lt('CLOUD_COVER', maxCloudPerc))
+    .select(LandsatBandsDict.get('L8'), bandNames)
+    .map(addIndices);
+
+// Landsat 7 ETM: LEDAPS SR. Use ('LANDSAT_LE7_SR') for USGS SR product
+var L7 = ee.ImageCollection('LEDAPS/LE7_L1T_SR')
+    .filterBounds(points)
+    .filterDate(startDate, endDate)
+    .filter(ee.Filter.lt('CLOUD_COVER', maxCloudPerc))
+    .map(maskBadData)
+    .select(LandsatBandsDict.get('L7'), bandNames)
+    .map(addIndices);
+
+// Landsat 5 TM: LEDAPS SR. Use ('LANDSAT_LT5_SR') for USGS SR product
+var L5 = ee.ImageCollection('LEDAPS/LT5_L1T_SR')
+    .filterBounds(points)
+    .filterDate(startDate, endDate)
+    .filter(ee.Filter.lt('CLOUD_COVER', maxCloudPerc))
+    .map(maskBadData)
+    .select(LandsatBandsDict.get('L5'), bandNames)
+    .map(addIndices);
+
+// Landsat 4 TM: Standard USGS SR product
+var L4 = ee.ImageCollection('LANDSAT/LT4_SR')
+    .filterBounds(points)
+    .filterDate(startDate, endDate)
+    .filter(ee.Filter.lt('CLOUD_COVER', maxCloudPerc))
+    .map(maskBadData)
+    .select(LandsatBandsDict.get('L4'), bandNames)
+    .map(addIndices);
+
+///////////////////////////////////////////////////////////////////////
+// MERGE COLLECTIONS, REDUCE COLLECTION TO POINTS, AND EXPORT TO CSV //
+///////////////////////////////////////////////////////////////////////
+
+// Merge Landsat collections into a single ImageCollection
+var c = ee.ImageCollection((L4.merge(L5)).merge(L7).merge(L8));
+
+// Setup function to extract value from each band from each image for each point 
+// Returns a feature collection with Landsat scene date and point coordinates 
+// in addition to the value for each band extracted
+var getLts = function(img) {
+  return ee.Image(img).reduceRegions({
+    collection: points, 
+    reducer: ee.Reducer.toList(1),
+    scale: 30
+   }).map(function(f) {
+        return f.set(
+        'DATE', img.get('DATE_ACQUIRED'),
+        'LONG_LAT', f.get('coordinates'));
+  });
+};
+
+// Apply function to all images in the collection
+var lts = c.map(getLts).flatten();
+
+///////////////////////////////////
+// PRINT, ADD TO MAP, AND EXPORT //
+///////////////////////////////////
+
+print('Points Used For Analysis:', points);
+print('Landsat 8 Collection:', L8);
+print('Landsat 7 Collection:', L7);
+print('Landsat 5 Collection:', L5);
+print('Landsat 4 Collection:', L4);
+print('Merged Landsat Collection:', c);
+print('Time Series Data for all Points:', lts);
+Map.addLayer(points, {color: '000000'});
+Map.centerObject(points, 8);
+
+// Export csv table to specified Google Drive folder
+// Alternatively, you can export to Assets for use in other scripts
+Export.table.toDrive({
+  collection: lts, 
+  description: 'LandsatTimeSeries',
+  folder: 'GEE',
+  fileFormat: 'csv'
+});

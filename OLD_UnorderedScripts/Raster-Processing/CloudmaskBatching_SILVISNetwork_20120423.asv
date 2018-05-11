@@ -1,0 +1,28 @@
+addpath('C:\Fmask_1_6_3\Matlab_Code_Fmask\');
+
+%mainDir = ('Y:\tempdata\mbaumann\Landsat_Processing\Landsat\175018\2005\176018\');
+mainDir = ('X:\');
+cd(mainDir);
+sz = size(dir,1)
+nam = dir
+
+n = 1
+for i = 3:sz
+   cd (strcat(mainDir,nam(i).name))
+   temp = ls('*_MTLFmask_1_6_3sav')   %_MTLFmask_1_6_3sav
+      if size(temp,1) == 0 
+         %autoFmask_1_6sav(6,6,10)     %dilate cloud, shadow (9 pixels seemed to much)
+         autoFmask_1_6sav(2,2,22.5)
+      end
+   n = n+1
+   nam(i).name
+   %count=char(n);
+   %count=cast(n,string)
+   %count = num2string(n)
+   %strcat(count,' -->files processed')
+   %strcat(num2string(n,' -->files processed')
+end
+ 
+%n
+    %ls('lndsr.*.hdf')
+

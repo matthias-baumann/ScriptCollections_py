@@ -1,0 +1,182 @@
+##############  Find max and min for each row of data by scenario and scale, find maximum difference, and write the difference out to new .txt file 
+###### Set working directory
+setwd("F:/DataF/chamilton/NWR_Land_Use_new/Analyses")
+
+##### Read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+rawdata_BAU_5km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_BAU_5km = data.frame(rawdata_BAU_5km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_5km = c("ORGNAME","FWSREGION","FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_BAU_5km = dat_BAU_5km[BAU_5km]
+
+## Add column names (default = no names)
+colnames(table_BAU_5km) = c("Refuge","Region","BAU_FR00_5km","BAU_FR50_5km","BAU_CP00_5km","BAU_CP50_5km","BAU_U00_5km","BAU_U50_5km")
+
+####################
+##### Create 25km columns for table, read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+
+rawdata_BAU_25km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_BAU_25km = data.frame(rawdata_BAU_25km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_25km = c("FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_BAU_25km = dat_BAU_25km[BAU_25km]
+
+## Add column names (default = no names)
+colnames(table_BAU_25km) = c("BAU_FR00_25km","BAU_FR50_25km","BAU_CP00_25km","BAU_CP50_25km","BAU_U00_25km","BAU_U50_25km")
+
+####################
+##### Create 75km columns for table, read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+
+rawdata_BAU_75km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_BAU_75km = data.frame(rawdata_BAU_75km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+BAU_75km = c("FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_BAU_75km = dat_BAU_75km[BAU_75km]
+
+## Add column names (default = no names)
+colnames(table_BAU_75km) = c("BAU_FR00_75km","BAU_FR50_75km","BAU_CP00_75km","BAU_CP50_75km","BAU_U00_75km","BAU_U50_75km")
+
+################
+###### Bind the tables into a single table for BAU across scales
+proportion_table_BAU = cbind(table_BAU_5km, table_BAU_25km, table_BAU_75km)
+
+#######################################################################################################
+###### PNH Scenario
+##### Read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+rawdata_PNH_5km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_PNH_5km = data.frame(rawdata_PNH_5km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+PNH_5km = c("FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_PNH_5km = dat_PNH_5km[PNH_5km]
+
+## Add column names (default = no names)
+colnames(table_PNH_5km) = c("PNH_FR00_5km","PNH_FR50_5km","PNH_CP00_5km","PNH_CP50_5km","PNH_U00_5km","PNH_U50_5km")
+
+####################
+##### Create 25km columns for table, read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+
+rawdata_PNH_25km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_PNH_25km = data.frame(rawdata_PNH_25km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+PNH_25km = c("FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_PNH_25km = dat_PNH_25km[PNH_25km]
+
+## Add column names (default = no names)
+colnames(table_PNH_25km) = c("PNH_FR00_25km","PNH_FR50_25km","PNH_CP00_25km","PNH_CP50_25km","PNH_U00_25km","PNH_U50_25km")
+
+####################
+##### Create 75km columns for table, read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+
+rawdata_PNH_75km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_PNH_75km = data.frame(rawdata_PNH_75km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+PNH_75km = c("FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_PNH_75km = dat_PNH_75km[PNH_75km]
+
+## Add column names (default = no names)
+colnames(table_PNH_75km) = c("PNH_FR00_75km","PNH_FR50_75km","PNH_CP00_75km","PNH_CP50_75km","PNH_U00_75km","PNH_U50_75km")
+
+################
+###### Bind the tables into a single table for PNH across scales
+proportion_table_PNH = cbind(table_PNH_5km, table_PNH_25km, table_PNH_75km)
+
+#######################################################################################################
+###### RUG Scenario
+##### Read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+rawdata_RUG_5km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_RUG_5km = data.frame(rawdata_RUG_5km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+RUG_5km = c("FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_RUG_5km = dat_RUG_5km[RUG_5km]
+
+## Add column names (default = no names)
+colnames(table_RUG_5km) = c("RUG_FR00_5km","RUG_FR50_5km","RUG_CP00_5km","RUG_CP50_5km","RUG_U00_5km","RUG_U50_5km")
+
+####################
+##### Create 25km columns for table, read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+
+rawdata_RUG_25km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_RUG_25km = data.frame(rawdata_RUG_25km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+RUG_25km = c("FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_RUG_25km = dat_RUG_25km[RUG_25km]
+
+## Add column names (default = no names)
+colnames(table_RUG_25km) = c("RUG_FR00_25km","RUG_FR50_25km","RUG_CP00_25km","RUG_CP50_25km","RUG_U00_25km","RUG_U50_25km")
+
+####################
+##### Create 75km columns for table, read in table from F:\DataF\chamilton\NWR_Land_Use_new\Analyses\Data_Files\NWR_<bufferdist>_transiton_matrix_<scenario>_all_refuges_change
+
+rawdata_RUG_75km = read.table(file.choose(), header = T)
+
+#### Create new dataframe and select which variables to keep
+dat_RUG_75km = data.frame(rawdata_RUG_75km)
+
+### Keeper variables - new variable name is scenario (BAU, PNH, RUG) + distance
+## The scenario doesn't matter for starting conditions, it is just establishing convention for when it DOES matter
+RUG_75km = c("FR00PROP","FR50PROP","CP00PROP","CP50PROP","U00PROP","U50PROP")
+
+## Save variables as new variable 
+table_RUG_75km = dat_RUG_75km[RUG_75km]
+
+## Add column names (default = no names)
+colnames(table_RUG_75km) = c("RUG_FR00_75km","RUG_FR50_75km","RUG_CP00_75km","RUG_CP50_75km","RUG_U00_75km","RUG_U50_75km")
+
+################
+###### Bind the tables into a single table for RUG across scales
+proportion_table_RUG = cbind(table_RUG_5km, table_RUG_25km, table_RUG_75km)
+
+##############################################################################################
+###### Bind all tables so that the table includes all scenarios and all scales
+proportion_table_all_scenarios = cbind(proportion_table_BAU, proportion_table_PNH, proportion_table_RUG)
+
+# Write to a .txt file
+write.table(proportion_table_all_scenarios, file = "table_proportion_all_uses_scenarios_and_distances.txt", col.names = T, sep = " ")
