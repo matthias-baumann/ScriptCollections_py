@@ -9,9 +9,9 @@ print("--------------------------------------------------------")
 print("Starting process, time:" +  starttime)
 print("")
 # ####################################### FUNCTIONS, FOLDER PATHS AND BASIC VARIABLES ######################### #
-root_folder = "G:/Baumann/_ANALYSES/LandUseChange_1985-2000-2015_UpdateWithRadar/Classification/Run_03/Tiles/"
-outVRT = "G:/Baumann/_ANALYSES/LandUseChange_1985-2000-2015_UpdateWithRadar/Classification/Run_03/Run03_VRT.vrt"
-outTXT = "G:/Baumann/_ANALYSES/LandUseChange_1985-2000-2015_UpdateWithRadar/Classification/Run_03/Run03_TXT.txt"
+root_folder = "D:/baumamat/Warfare/_Variables/Forest/Forest2000/"
+outVRT = "D:/baumamat/Warfare/_Variables/Forest/Forest2000.vrt"
+outTXT = "D:/baumamat/Warfare/_Variables/Forest/Forest2000.txt"
 # #### (1) BUILD OUTPUT TEXT FILES WITH PATHS FROM THE DIFFERENT FOLDERS
 print("Build List")
 finalFileList = []
@@ -27,7 +27,6 @@ for item in finalFileList:
 f_open.close()
 # #### (3) BUILD VRT
 print("Build VRT")
-#outVRT = root_folder + target + "_VRT.vrt"
 command =  "gdalbuildvrt.exe -input_file_list " + outTXT + " " + outVRT
 os.system(command)
 
