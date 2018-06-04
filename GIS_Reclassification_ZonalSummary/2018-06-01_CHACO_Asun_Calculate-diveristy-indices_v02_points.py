@@ -1,8 +1,7 @@
 # ####################################### LOAD REQUIRED LIBRARIES ############################################# #
 import time
 import baumiTools as bt
-import gdal
-import multiprocessing
+import gdal, osr
 import numpy as np
 # ####################################### SET TIME-COUNT ###################################################### #
 starttime = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
@@ -10,11 +9,9 @@ print("--------------------------------------------------------")
 print("Starting process, time:" +  starttime)
 print("")
 # ####################################### FOLDER PATHS AND BASIC VARIABLES #################################### #
-#rootFolder = "L:/_SHARED_DATA/ASP_MB/LC2015/"
-rootFolder = "Y:/Baumann/_ANALYSES/LandUseChange_1985-2000-2015_UpdateWithRadar/Classification/Run_03/Tiles/"
-windowSize_px = 30 # [3000, 5000]
+rootFolder = "Z:/_SHARED_DATA/ASP_MB/LC2015/"
 drvMemR = gdal.GetDriverByName('MEM')
-offsetOut = windowSize_px / 2
+output = rootFolder + "_SHDI_20180604.csv"
 # ####################################### FUNCTIONS ########################################################### #
 def calcSHDI(array):
     arraySize = array.size
@@ -51,29 +48,66 @@ def makeSlices(array, windowSize):
     return slices
 # ####################################### START PROCESSING #################################################### #
 # (1) Load image to memory, get infos from it
-print("Copy raster to memory")
-#ds = bt.baumiRT.OpenRasterToMemory(rootFolder + "Run03_clumpEliminate_crop_2015_8px.tif")
-ds = bt.baumiRT.OpenRasterToMemory(rootFolder + "Tile_x17999_y20999_1000x1000.tif")
+ds = gdal.Open(rootFolder + "Run03_clumpEliminate_crop_2015_8px.tif")
+points = bt.baumiVT.CopyToMem("Z:/_SHARED_DATA/ASP_MB/cameras_diversity_index/cameras_juli_bibi_mica.shp")
 gt = ds.GetGeoTransform()
 pr = ds.GetProjection()
-cols = ds.RasterXSize
-rows = ds.RasterYSize
-ds_array = ds.GetRasterBand(1).ReadAsArray(0, 0, cols, rows)
-# (2)
-
-
-
-
-# (4) Write values to disc
-print("Write output")
-SHDI_out = drvMemR.Create('', cols, rows, 1, gdal.GDT_Float32)
-SHDI_out.SetProjection(pr)
-SHDI_out.SetGeoTransform(gt)
-out_array = np.zeros((rows, cols), np.float32) * -99 # Initialize output array to Nodata
-out_array[offsetOut:-offsetOut, offsetOut:-offsetOut] = SHDI
-SHDI_out.GetRasterBand(1).WriteArray(out_array, 0, 0)
-bt.baumiRT.CopyMEMtoDisk(SHDI_out, rootFolder + "Tile_x17999_y20999_1000x1000_sub_SHDI2.tif")
-
+rb = ds.GetRasterBand(1)
+# (2) Initialize output
+outList = [["UniqueID", "SHDI_3000", "SHDI_5000"]]
+# (3) Build coordinate transformation
+lyr = points.GetLayer()
+source_SR = lyr.GetSpatialRef()
+target_SR = osr.SpatialReference()
+target_SR.ImportFromWkt(pr)
+coordTrans = osr.CoordinateTransformation(source_SR, target_SR)
+# (4) loop through features
+feat = lyr.GetNextFeature()
+while feat:
+# Initialize the output, get ID
+    id = feat.GetField("UniqueID")
+    print(id)
+    vals = [id]
+# Get geometry, translate into array coordinate
+    geom = feat.GetGeometryRef()
+    geom.Transform(coordTrans)
+    mx, my = geom.GetX(), geom.GetY()
+    #print(mx, my)
+    px = int((mx - gt[0]) / gt[1])
+    py = int((my - gt[3]) / gt[5])
+    #print(px, py)
+# Loop over the 100 cells
+    vals_3000 = []
+    vals_5000 = []
+    for i in range(-5, 5, 1):
+        for j in range(-5, 5, 1):
+        # Define the pixel-coordinate for the cell
+            center_x = px + i
+            center_y = py + j
+            #print(center_x, center_y)
+        # Extract the arrays, and calculate SHDI
+            # 3000m radius
+            UL_x_3000 = center_x - 50
+            UL_y_3000 = center_y - 50
+            array_3000 = rb.ReadAsArray(UL_x_3000, UL_y_3000, 100, 100)
+            SHDI_3000 = calcSHDI(array_3000)
+            vals_3000.append(SHDI_3000)
+        # 5000m radius
+            UL_x_5000 = center_x - 83
+            UL_y_5000 = center_y - 83
+            array_5000 = rb.ReadAsArray(UL_x_5000, UL_y_5000, 166, 166)
+            SHDI_5000 = calcSHDI(array_5000)
+            vals_5000.append(SHDI_5000)
+    # Calculate the means
+    mean_3000 = sum(vals_3000)/len(vals_3000)
+    mean_5000 = sum(vals_5000)/len(vals_5000)
+    # Append to output, take next feature
+    vals.append(SHDI_3000)
+    vals.append(SHDI_5000)
+    outList.append(vals)
+    feat = lyr.GetNextFeature()
+# Write output
+bt.baumiFM.WriteListToCSV(output, outList, ",")
 # ####################################### END TIME-COUNT AND PRINT TIME STATS################################## #
 print("")
 endtime = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
