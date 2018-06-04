@@ -13,7 +13,11 @@ dl_Folder = "D:/baumamat/Warfare/_Variables/Forest/"
 baseURL = "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2016-v1.4/Hansen_GFC-2016-v1.4"
 layers = [["_treecover2000_", "Forest2000"], ["_gain_", "Gain"], ["_lossyear_", "LossYear"]]
 ext = ".tif"
-tiles = ["30N_120W", "30N_110W", "30N_100W", "30N_090W", "30N_080W", "30N_020W", "30N_010W",
+tiles = ["40N_130W", "40N_120W", "40N_110W", "40N_100W", "40N_090W", "40N_080W", "40N_010W",
+		 "40N_000E", "40N_010E", "40N_020E", "40N_030E", "40N_040E", "40N_050E", "40N_060E", "40N_070E", "40N_080E",
+		 "40N_090E", "40N_100E", "40N_110E", "40N_120E", "40N_130E", "40N_140E",
+
+         "30N_120W", "30N_110W", "30N_100W", "30N_090W", "30N_080W", "30N_020W", "30N_010W",
 		 "30N_000E", "30N_010E", "30N_020E", "30N_030E", "30N_040E", "30N_050E", "30N_060E", "30N_070E", "30N_080E",
 		 "30N_090E", "30N_100E", "30N_110E", "30N_120E", "30N_130E",
 		 

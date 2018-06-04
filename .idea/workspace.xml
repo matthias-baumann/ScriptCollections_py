@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="af63b4e7-2b51-4cf2-b314-9d964af49e34" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing-parallel.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ScriptCollections.iml" afterPath="$PROJECT_DIR$/.idea/ScriptCollections.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ADMIN_Moving_Extracting/2018-05-11_DOWNLOAD_Hansen-forest-loss-data.py" afterPath="$PROJECT_DIR$/ADMIN_Moving_Extracting/2018-05-11_DOWNLOAD_Hansen-forest-loss-data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LANDSAT_PreProcessing_Compositing_Stacking_MosaicPyramid/2018-02-05_VRT-PYRAMIDS.py" afterPath="$PROJECT_DIR$/LANDSAT_PreProcessing_Compositing_Stacking_MosaicPyramid/2018-02-05_VRT-PYRAMIDS.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_One_Liners_ForQucikThings_usingBT.py" afterPath="$PROJECT_DIR$/_One_Liners_ForQucikThings_usingBT.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__Code_Trys_ForConsole.py" afterPath="$PROJECT_DIR$/__Code_Trys_ForConsole.py" />
+    </list>
+    <ignored path="ScriptCollections.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="__Code_Trys_ForConsole.py" />
+    <ignored path="_One_Liners_ForQucikThings_usingBT.py" />
+    <ignored path=".idea/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="ScriptCollections" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="16" column="111" selection-start-line="16" selection-start-column="111" selection-end-line="16" selection-end-column="111" />
+              <folding>
+                <element signature="e#114#125#0" expanded="true" />
+                <element signature="e#1005#1505#0" expanded="false" />
+                <element signature="e#1545#2167#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/DeleteItemsInFolder.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/DeleteAllFilesInDirectory.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/GetFilesInFolderWithEnding.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/DeleteAllItemsInFolder.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/CreateFolder.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/vectorTools.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/TarGZ.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/UnTarGZ.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileTools.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/UnTarToFolder.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/__init__.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/__init__.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/__init__.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/GeomRasToNP.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileTools/__init__.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileTools/WriteToCSV.py" />
+        <option value="$PROJECT_DIR$/ADMIN_Moving_Extracting/2018-05-11_DOWNLOAD_Hansen-forest-loss-data.py" />
+        <option value="$PROJECT_DIR$/LANDSAT_PreProcessing_Compositing_Stacking_MosaicPyramid/2018-02-05_VRT-PYRAMIDS.py" />
+        <option value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/ClumpEliminate.py" />
+        <option value="$PROJECT_DIR$/_One_Liners_ForQucikThings_usingBT.py" />
+        <option value="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-05-16_WARFARE_HansenSummaries_10km.py" />
+        <option value="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-05-24_WARFARE_ConflictSummaries_10km.py" />
+        <option value="$PROJECT_DIR$/__Code_Trys_ForConsole.py" />
+        <option value="$USER_HOME$/Miniconda3/envs/py36/Lib/site-packages/baumiTools/fileTools/WriteToCSV.py" />
+        <option value="F:/Lehre/SS_2018/M7_Geoprocessing in python/Week06 - Vector Processing I/Assignment04/Assignment04_CalcSolution.py" />
+        <option value="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing-parallel.py" />
+        <option value="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Python</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ScriptCollections_py" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="ScriptCollections" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="ScriptCollections" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="L:\_PERSONAL_FOLDERS\baumann\ScriptCollections_py\GIS_Reclassification_ZonalSummary" />
+      <recent name="Z:\_PERSONAL_FOLDERS\baumann\ScriptCollections_py\GIS_Reclassification_ZonalSummary" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing">
+    <configuration default="false" name="2018-05-24_WARFARE_ConflictSummaries_10km" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-05-24_WARFARE_ConflictSummaries_10km.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Assignment04_CalcSolution" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="F:/Lehre/SS_2018/M7_Geoprocessing in python/Week06 - Vector Processing I/Assignment04" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="F:/Lehre/SS_2018/M7_Geoprocessing in python/Week06 - Vector Processing I/Assignment04/Assignment04_CalcSolution.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ClumpEliminate" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/ClumpEliminate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="_One_Liners_ForQucikThings_usingBT" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/_One_Liners_ForQucikThings_usingBT.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ScriptCollections" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.2018-05-24_WARFARE_ConflictSummaries_10km" />
+      <item index="1" class="java.lang.String" itemvalue="Python.2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Assignment04_CalcSolution" />
+      <item index="3" class="java.lang.String" itemvalue="Python.ClumpEliminate" />
+      <item index="4" class="java.lang.String" itemvalue="Python._One_Liners_ForQucikThings_usingBT" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing" />
+        <item index="1" class="java.lang.String" itemvalue="Python._One_Liners_ForQucikThings_usingBT" />
+        <item index="2" class="java.lang.String" itemvalue="Python.ClumpEliminate" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Assignment04_CalcSolution" />
+        <item index="4" class="java.lang.String" itemvalue="Python.2018-05-24_WARFARE_ConflictSummaries_10km" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="af63b4e7-2b51-4cf2-b314-9d964af49e34" name="Default" comment="" />
+      <created>1526036427761</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1526036427761</updated>
+    </task>
+    <task id="LOCAL-00001" summary="New commit">
+      <created>1526476827818</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1526476827818</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updates 16.5.2018">
+      <created>1526478798043</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1526478798043</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updates 16.5.2018">
+      <created>1527148736953</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1527148736953</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Updates 16.5.2018">
+      <created>1527838392312</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1527838392312</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="New commit" />
+    <MESSAGE value="Updates 16.5.2018" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates 16.5.2018" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="8" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#114#125#0" expanded="true" />
+            <element signature="e#1005#1505#0" expanded="false" />
+            <element signature="e#1545#2167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#114#125#0" expanded="true" />
+            <element signature="e#1005#1505#0" expanded="false" />
+            <element signature="e#1545#2167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+          <folding>
+            <element signature="e#114#125#0" expanded="true" />
+            <element signature="e#1005#1505#0" expanded="false" />
+            <element signature="e#1545#2167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#114#125#0" expanded="true" />
+            <element signature="e#1005#1505#0" expanded="false" />
+            <element signature="e#1545#2167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#114#125#0" expanded="true" />
+            <element signature="e#1005#1505#0" expanded="false" />
+            <element signature="e#1545#2167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-05-24_WARFARE_ConflictSummaries_10km.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="95" selection-start-line="12" selection-start-column="95" selection-end-line="12" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/DeleteItemsInFolder.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/DeleteAllFilesInDirectory.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/numpy/__init__.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/sklearn/datasets/samples_generator.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/sklearn/datasets/__init__.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/sklearn/__init__.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/sklearn/svm/classes.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/sklearn/svm/__init__.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/GetFilesInFolderWithEnding.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/DeleteAllItemsInFolder.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/vectorTools.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/CreateFolder.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/UnTarToFolder.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/UnTarGZ.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileTools.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/TarGZ.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileToolss/__init__.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2016-05-02_WEED-BUTSIC_Additional variables05_AspectAnalysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="34" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-05-08_CHACO_VCF_SummaryStats_Pernilla.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-952">
+          <caret line="62" column="50" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/RasterizeSHP.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/_dev_RasterizePolygon.py" />
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/_deprecated/2015-12-02_WEED-BUTSIC_CreateSummaryDataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="414" column="0" selection-start-line="414" selection-start-column="0" selection-end-line="419" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/GeomRasToNP.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileTools/__init__.py" />
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/fileTools/WriteToCSV.py" />
+    <entry file="file://$PROJECT_DIR$/ADMIN_Moving_Extracting/2018-05-11_DOWNLOAD_Hansen-forest-loss-data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="17" column="80" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LANDSAT_PreProcessing_Compositing_Stacking_MosaicPyramid/2018-02-05_VRT-PYRAMIDS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/CopyMemToDisk.py" />
+    <entry file="file://$PROJECT_DIR$/_One_Liners_ForQucikThings_usingBT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/baumamat/Miniconda/envs/py36/Lib/site-packages/baumiTools/rasterTools/ClumpEliminate.py" />
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-05-16_WARFARE_HansenSummaries_10km.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-05-24_WARFARE_ConflictSummaries_10km.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2017-12-14_CHACO_Asun_Calculate-diveristy-indices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing-parallel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GIS_Reclassification_ZonalSummary/2018-06-01_CHACO_Asun_Calculate-diveristy-indices_v02-slicing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="16" column="111" selection-start-line="16" selection-start-column="111" selection-end-line="16" selection-end-column="111" />
+          <folding>
+            <element signature="e#114#125#0" expanded="true" />
+            <element signature="e#1005#1505#0" expanded="false" />
+            <element signature="e#1545#2167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

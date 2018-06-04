@@ -32,7 +32,7 @@ os.system(command)
 
 print("Calculate Pyramids, vrt")
 command = "gdaladdo.exe " + outVRT + " 2 4 8 16 32 64"
-os.system(command)
+#os.system(command)
 os.remove(outTXT)
 
 # ####################################### END TIME-COUNT AND PRINT TIME STATS################################## #
