@@ -13,8 +13,9 @@ print("")
 drvR = gdal.GetDriverByName('GTiff')
 drvMemR = gdal.GetDriverByName('MEM')
 drvMemV = ogr.GetDriverByName('Memory')
-root_folder = "E:/Baumann/BALTRAK/05_Wilderness_LivestockDisaggreg_InputData/"
-outputFolder = root_folder + "_WildernessRuns/20180709_Run13/"
+root_folder = "Y:/Baumann/BALTRAK/05_Wilderness_LivestockDisaggreg_InputData/"
+#outputFolder = root_folder + "_WildernessRuns/20180709_Run13/"
+outputFolder = "Y:/Baumann/BALTRAK/Connectivity/"
 settShape = bt.baumiVT.CopyToMem(root_folder + "01_Settlements-LivestockStations/BALTRAK_allsettlements_finished_2017_02_06.shp")
 extentShape = bt.baumiVT.CopyToMem(root_folder + "Extent_V02.shp")
 crop90 = bt.baumiRT.OpenRasterToMemory(root_folder + "02_CroplandData/1990_PercCropland_300m.tif")
@@ -157,8 +158,8 @@ crop15_proj = Reproject(crop15, shpRas)
 cropMin, cropMax = FindMinMax([crop90_proj, crop15_proj], shpRas)
 crop90norm = Normalize(crop90_proj, cropMin, cropMax)
 crop15norm = Normalize(crop15_proj, cropMin, cropMax)
-WriteAndMask(crop90norm.GetRasterBand(1).ReadAsArray(0, 0, crop90norm.RasterXSize, crop90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Cropland_1990_normalized.tif")
-WriteAndMask(crop15norm.GetRasterBand(1).ReadAsArray(0, 0, crop15norm.RasterXSize, crop15norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Cropland_2015_normalized.tif")
+#WriteAndMask(crop90norm.GetRasterBand(1).ReadAsArray(0, 0, crop90norm.RasterXSize, crop90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Cropland_1990_normalized.tif")
+#WriteAndMask(crop15norm.GetRasterBand(1).ReadAsArray(0, 0, crop15norm.RasterXSize, crop15norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Cropland_2015_normalized.tif")
 
 print("Distance to settlements")
 selState = "Category = 'Settlement'"
@@ -177,10 +178,10 @@ settDis90norm = Normalize(settDis90, settMin, settMax, invert=True)
 settDis15_10norm = Normalize(settDis15_10, settMin, settMax, invert=True)
 settDis15_50norm = Normalize(settDis15_50, settMin, settMax, invert=True)
 settDis15_90norm = Normalize(settDis15_50, settMin, settMax, invert=True)
-WriteAndMask(settDis90norm.GetRasterBand(1).ReadAsArray(0, 0, settDis90norm.RasterXSize, settDis90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-settlements_1990_normalized.tif")
-WriteAndMask(settDis15_10norm.GetRasterBand(1).ReadAsArray(0, 0, settDis15_10norm.RasterXSize, settDis15_10norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-settlements_2015_th10_normalized.tif")
-WriteAndMask(settDis15_50norm.GetRasterBand(1).ReadAsArray(0, 0, settDis15_50norm.RasterXSize, settDis15_50norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-settlements_2015_th50_normalized.tif")
-WriteAndMask(settDis15_90norm.GetRasterBand(1).ReadAsArray(0, 0, settDis15_90norm.RasterXSize, settDis15_90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-settlements_2015_th90_normalized.tif")
+#WriteAndMask(settDis90norm.GetRasterBand(1).ReadAsArray(0, 0, settDis90norm.RasterXSize, settDis90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-settlements_1990_normalized.tif")
+#WriteAndMask(settDis15_10norm.GetRasterBand(1).ReadAsArray(0, 0, settDis15_10norm.RasterXSize, settDis15_10norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-settlements_2015_th10_normalized.tif")
+#WriteAndMask(settDis15_50norm.GetRasterBand(1).ReadAsArray(0, 0, settDis15_50norm.RasterXSize, settDis15_50norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-settlements_2015_th50_normalized.tif")
+#WriteAndMask(settDis15_90norm.GetRasterBand(1).ReadAsArray(0, 0, settDis15_90norm.RasterXSize, settDis15_90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-settlements_2015_th90_normalized.tif")
 
 print("Distance to livestock stations")
 selState = "Category = 'Zimovka' or Category = 'Letovka'"
@@ -199,10 +200,10 @@ ZimLetDist90norm = Normalize(ZimLetDist90, settMin, settMax, invert=True)
 ZimLetDist15_10norm = Normalize(ZimLetDist15_10, ZimletMin, ZimletMax, invert=True)
 ZimLetDist15_50norm = Normalize(ZimLetDist15_50, ZimletMin, ZimletMax, invert=True)
 ZimLetDist15_90norm = Normalize(ZimLetDist15_50, ZimletMin, ZimletMax, invert=True)
-WriteAndMask(ZimLetDist90norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist90norm.RasterXSize, ZimLetDist90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-LivestockStations_1990_normalized.tif")
-WriteAndMask(ZimLetDist15_10norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_10norm.RasterXSize, ZimLetDist15_10norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-LivestockStations_2015_th10_normalized.tif")
-WriteAndMask(ZimLetDist15_50norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_50norm.RasterXSize, ZimLetDist15_50norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-LivestockStations_2015_th50_normalized.tif")
-WriteAndMask(ZimLetDist15_90norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_90norm.RasterXSize, ZimLetDist15_90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-LivestockStations_2015_th90_normalized.tif")
+#WriteAndMask(ZimLetDist90norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist90norm.RasterXSize, ZimLetDist90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-LivestockStations_1990_normalized.tif")
+#WriteAndMask(ZimLetDist15_10norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_10norm.RasterXSize, ZimLetDist15_10norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-LivestockStations_2015_th10_normalized.tif")
+#WriteAndMask(ZimLetDist15_50norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_50norm.RasterXSize, ZimLetDist15_50norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-LivestockStations_2015_th50_normalized.tif")
+#WriteAndMask(ZimLetDist15_90norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_90norm.RasterXSize, ZimLetDist15_90norm.RasterYSize), shpRas, outputFolder + "00_Layers-INPUT/Distance-to-LivestockStations_2015_th90_normalized.tif")
 print("")
 print("Calculate Winderness indices, and changes therein")
 crop90 = crop90norm.GetRasterBand(1).ReadAsArray(0, 0, crop90norm.RasterXSize, crop90norm.RasterYSize)
@@ -215,53 +216,85 @@ ZimLetDis90 = ZimLetDist90norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist90no
 ZimLetDis15_10 = ZimLetDist15_10norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_10norm.RasterXSize, ZimLetDist15_10norm.RasterYSize)
 ZimLetDis15_50 = ZimLetDist15_50norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_50norm.RasterXSize, ZimLetDist15_50norm.RasterYSize)
 ZimLetDis15_90 = ZimLetDist15_90norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDist15_90norm.RasterXSize, ZimLetDist15_90norm.RasterYSize)
-print("Sum of layers")
-sum90 = crop90 + settDis90 + ZimLetDis90
-sum15_10 = crop15 + settDis15_10 + ZimLetDis15_10
-sum15_50 = crop15 + settDis15_50 + ZimLetDis15_50
-sum15_90 = crop15 + settDis15_90 + ZimLetDis15_90
-diff1590_10 = sum15_10 - sum90
-diff1590_50 = sum15_50 - sum90
-diff1590_90 = sum15_90 - sum90
-WriteAndMask(sum90, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_1990.tif")
-WriteAndMask(sum15_10, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015_th10.tif")
-WriteAndMask(sum15_50, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015_th50.tif")
-WriteAndMask(sum15_90, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015_th90.tif")
-WriteAndMask(diff1590_10, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015-1990_th10.tif")
-WriteAndMask(diff1590_50, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015-1990_th50.tif")
-WriteAndMask(diff1590_90, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015-1990_th90.tif")
+# print("Sum of layers")
+# sum90 = crop90 + settDis90 + ZimLetDis90
+# sum15_10 = crop15 + settDis15_10 + ZimLetDis15_10
+# sum15_50 = crop15 + settDis15_50 + ZimLetDis15_50
+# sum15_90 = crop15 + settDis15_90 + ZimLetDis15_90
+# diff1590_10 = sum15_10 - sum90
+# diff1590_50 = sum15_50 - sum90
+# diff1590_90 = sum15_90 - sum90
+# WriteAndMask(sum90, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_1990.tif")
+# WriteAndMask(sum15_10, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015_th10.tif")
+# WriteAndMask(sum15_50, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015_th50.tif")
+# WriteAndMask(sum15_90, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015_th90.tif")
+# WriteAndMask(diff1590_10, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015-1990_th10.tif")
+# WriteAndMask(diff1590_50, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015-1990_th50.tif")
+# WriteAndMask(diff1590_90, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015-1990_th90.tif")
+#
+# print("Product of layers")
+# prod90 = crop90 * settDis90 * ZimLetDis90
+# prod15_10 = crop15 * settDis15_10 * ZimLetDis15_10
+# prod15_50 = crop15 * settDis15_50 * ZimLetDis15_50
+# prod15_90 = crop15 * settDis15_90 * ZimLetDis15_90
+# diff1590_10 = prod15_10 - prod90
+# diff1590_50 = prod15_50 - prod90
+# diff1590_90 = prod15_90 - prod90
+# WriteAndMask(prod90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_1990.tif")
+# WriteAndMask(prod15_10, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th10.tif")
+# WriteAndMask(prod15_50, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th50.tif")
+# WriteAndMask(prod15_90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th90.tif")
+# WriteAndMask(diff1590_10, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th10.tif")
+# WriteAndMask(diff1590_50, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th50.tif")
+# WriteAndMask(diff1590_90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th90.tif")
+#
+# print("Minimum of layers")
+# min90 = np.minimum.reduce([crop90, settDis90, ZimLetDis90])
+# min15_10 = np.minimum.reduce([crop15, settDis15_10, ZimLetDis15_10])
+# min15_50 = np.minimum.reduce([crop15, settDis15_50, ZimLetDis15_50])
+# min15_90 = np.minimum.reduce([crop15, settDis15_90, ZimLetDis15_90])
+# diff1590_10 = min15_10 - min90
+# diff1590_50 = min15_50 - min90
+# diff1590_90 = min15_90 - min90
+# WriteAndMask(min90, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_1990.tif")
+# WriteAndMask(min15_10, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015_th10.tif")
+# WriteAndMask(min15_50, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015_th50.tif")
+# WriteAndMask(min15_90, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015_th90.tif")
+# WriteAndMask(diff1590_10, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015-1990_th10.tif")
+# WriteAndMask(diff1590_50, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015-1990_th50.tif")
+# WriteAndMask(diff1590_90, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015-1990_th90.tif")
 
-print("Product of layers")
-prod90 = crop90 * settDis90 * ZimLetDis90
-prod15_10 = crop15 * settDis15_10 * ZimLetDis15_10
-prod15_50 = crop15 * settDis15_50 * ZimLetDis15_50
-prod15_90 = crop15 * settDis15_90 * ZimLetDis15_90
-diff1590_10 = prod15_10 - prod90
-diff1590_50 = prod15_50 - prod90
-diff1590_90 = prod15_90 - prod90
-WriteAndMask(prod90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_1990.tif")
-WriteAndMask(prod15_10, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th10.tif")
-WriteAndMask(prod15_50, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th50.tif")
-WriteAndMask(prod15_90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th90.tif")
-WriteAndMask(diff1590_10, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th10.tif")
-WriteAndMask(diff1590_50, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th50.tif")
-WriteAndMask(diff1590_90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th90.tif")
+print("Maximum of layers")
+max90 = np.maximum.reduce([crop90, settDis90, ZimLetDis90])
+max15_10 = np.maximum.reduce([crop15, settDis15_10, ZimLetDis15_10])
+max15_50 = np.maximum.reduce([crop15, settDis15_50, ZimLetDis15_50])
+max15_90 = np.maximum.reduce([crop15, settDis15_90, ZimLetDis15_90])
+diff1590_10 = max15_10 - max90
+diff1590_50 = max15_50 - max90
+diff1590_90 = max15_90 - max90
+WriteAndMask(max90, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_1990.tif")
+WriteAndMask(max15_10, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015_th10.tif")
+WriteAndMask(max15_50, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015_th50.tif")
+WriteAndMask(max15_90, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015_th90.tif")
+WriteAndMask(diff1590_10, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015-1990_th10.tif")
+WriteAndMask(diff1590_50, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015-1990_th50.tif")
+WriteAndMask(diff1590_90, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015-1990_th90.tif")
 
-print("Minimum of layers")
-min90 = np.minimum.reduce([crop90, settDis90, ZimLetDis90])
-min15_10 = np.minimum.reduce([crop15, settDis15_10, ZimLetDis15_10])
-min15_50 = np.minimum.reduce([crop15, settDis15_50, ZimLetDis15_50])
-min15_90 = np.minimum.reduce([crop15, settDis15_90, ZimLetDis15_90])
-diff1590_10 = min15_10 - min90
-diff1590_50 = min15_50 - min90
-diff1590_90 = min15_90 - min90
-WriteAndMask(min90, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_1990.tif")
-WriteAndMask(min15_10, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015_th10.tif")
-WriteAndMask(min15_50, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015_th50.tif")
-WriteAndMask(min15_90, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015_th90.tif")
-WriteAndMask(diff1590_10, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015-1990_th10.tif")
-WriteAndMask(diff1590_50, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015-1990_th50.tif")
-WriteAndMask(diff1590_90, shpRas, outputFolder + "03_Layer-MIN/MIN_Wilderness_2015-1990_th90.tif")
+print("Mean of layers")
+mean90 = crop90 + settDis90 + ZimLetDis90
+mean15_10 = (crop15 + settDis15_10 + ZimLetDis15_10) / 3
+mean15_50 = (crop15 + settDis15_50 + ZimLetDis15_10) / 3
+mean15_90 = (crop15 + settDis15_90 + ZimLetDis15_10) / 3
+diff1590_10 = mean15_10 - mean90
+diff1590_50 = mean15_50 - mean90
+diff1590_90 = mean15_90 - mean90
+WriteAndMask(mean90, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_1990.tif")
+WriteAndMask(mean15_10, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_2015_th10.tif")
+WriteAndMask(mean15_50, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_2015_th50.tif")
+WriteAndMask(mean15_90, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_2015_th90.tif")
+WriteAndMask(diff1590_10, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_2015-1990_th10.tif")
+WriteAndMask(diff1590_50, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_2015-1990_th50.tif")
+WriteAndMask(diff1590_90, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_2015-1990_th90.tif")
 # ####################################### END TIME-COUNT AND PRINT TIME STATS################################## #
 print("")
 endtime = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())

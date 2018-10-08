@@ -12,13 +12,14 @@ print("")
 # ####################################### DRIVERS AND FOLDER-PATHS ############################################ #
 # drvV = ogr.GetDriverByName('ESRI Shapefile')
 drvMemV = ogr.GetDriverByName('memory')
-input = "L:/_SHARED_DATA/_students_data_exchange/LL_MB/Corona/CORONA2_251117.csv"
-outfile = "L:/_SHARED_DATA/_students_data_exchange/LL_MB/Corona/CORONA2_251117_polygons.shp"
+input = "L:/_SHARED_DATA/_students_data_exchange/LL_MB/Corona/Corona_Wolken.csv"
+outfile = "L:/_SHARED_DATA/_students_data_exchange/LL_MB/Corona/Corona_Wolken_polygons.shp"
 # ####################################### FUNCTIONS ########################################################### #
 # source: https://stackoverflow.com/questions/21298772/how-to-convert-latitude-longitude-to-decimal-in-python
 def ConvertCoord(inputString):
 	# Convert all symbols into hyphon
-	inputString = re.sub('[°]', '-', inputString)
+	inputString = re.sub('[Â]', '-', inputString)
+	inputString = re.sub('[°]', '', inputString)
 	inputString = re.sub("[']", '-', inputString)
 	inputString = re.sub('["]', '', inputString)
 	multipler = 1 if inputString[-1] in ['N', 'E'] else -1

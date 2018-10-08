@@ -9,9 +9,9 @@ print("--------------------------------------------------------")
 print("Starting process, time:" +  starttime)
 print("")
 # ####################################### FUNCTIONS, FOLDER PATHS AND BASIC VARIABLES ######################### #
-root_folder = "D:/baumamat/Warfare/_Variables/Forest/Forest2000/"
-outVRT = "D:/baumamat/Warfare/_Variables/Forest/Forest2000.vrt"
-outTXT = "D:/baumamat/Warfare/_Variables/Forest/Forest2000.txt"
+root_folder = "D:/baumamat/DARA_Composites/Composite_Stacks/"
+outVRT = "D:/baumamat/DARA_Composites/VRT_Landsat_IndexMetrics_1985-2017.vrt"
+outTXT = "D:/baumamat/DARA_Composites/fileList.txt"
 # #### (1) BUILD OUTPUT TEXT FILES WITH PATHS FROM THE DIFFERENT FOLDERS
 print("Build List")
 finalFileList = []
@@ -27,12 +27,12 @@ for item in finalFileList:
 f_open.close()
 # #### (3) BUILD VRT
 print("Build VRT")
-command =  "gdalbuildvrt.exe -input_file_list " + outTXT + " " + outVRT
+command =  "gdalbuildvrt.exe -vrtnodata 0 -input_file_list " + outTXT + " " + outVRT
 os.system(command)
 
 print("Calculate Pyramids, vrt")
 command = "gdaladdo.exe " + outVRT + " 2 4 8 16 32 64"
-#os.system(command)
+os.system(command)
 os.remove(outTXT)
 
 # ####################################### END TIME-COUNT AND PRINT TIME STATS################################## #

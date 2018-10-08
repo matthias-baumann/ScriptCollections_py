@@ -1,0 +1,350 @@
+<VRTDataset rasterXSize="29390" rasterYSize="31171">
+  <SRS>GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4326"]]</SRS>
+  <GeoTransform> -6.5839952624386854e+01,  2.6949458523585658e-04,  0.0000000000000000e+00, -1.6666353634741071e+01,  0.0000000000000000e+00, -2.6949458523585658e-04</GeoTransform>
+  <VRTRasterBand dataType="Int32" band="1">
+    <ColorInterp>Gray</ColorInterp>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_409.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="3265" yOff="27707" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_410.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="6531" yOff="27707" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_411.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="9796" yOff="27707" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_412.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="13061" yOff="27707" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_433.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="0" yOff="24243" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_434.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3465" />
+      <DstRect xOff="3265" yOff="24243" xSize="3267" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_435.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="6531" yOff="24243" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_436.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="9796" yOff="24243" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_437.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3465" />
+      <DstRect xOff="13061" yOff="24243" xSize="3267" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_438.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="16327" yOff="24243" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_460.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="6531" yOff="20780" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_461.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="9796" yOff="20780" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_462.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="13061" yOff="20780" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_463.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="16327" yOff="20780" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_485.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="6531" yOff="17317" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_486.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="9796" yOff="17317" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_487.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="13061" yOff="17317" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_488.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="16327" yOff="17317" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_509.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3465" />
+      <DstRect xOff="3265" yOff="13853" xSize="3267" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_510.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="6531" yOff="13853" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_511.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="9796" yOff="13853" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_512.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3465" />
+      <DstRect xOff="13061" yOff="13853" xSize="3267" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_513.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="16327" yOff="13853" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_535.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="6531" yOff="10390" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_536.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="9796" yOff="10390" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_537.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="13061" yOff="10390" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_538.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="16327" yOff="10390" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_539.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="19592" yOff="10390" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_540.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="22858" yOff="10390" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_541.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="26123" yOff="10390" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_560.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="6531" yOff="6927" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_561.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="9796" yOff="6927" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_562.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="13061" yOff="6927" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_563.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="16327" yOff="6927" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_564.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="19592" yOff="6927" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_565.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="22858" yOff="6927" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_566.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="26123" yOff="6927" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_585.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="6531" yOff="3463" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_586.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="9796" yOff="3463" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_587.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3465" />
+      <DstRect xOff="13061" yOff="3463" xSize="3267" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_588.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="16327" yOff="3463" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_589.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3465" />
+      <DstRect xOff="19592" yOff="3463" xSize="3267" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_590.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3465" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3465" />
+      <DstRect xOff="22858" yOff="3463" xSize="3266" ySize="3465" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_610.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="6531" yOff="0" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_611.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="9796" yOff="0" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_612.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="13061" yOff="0" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_613.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3266" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3266" ySize="3464" />
+      <DstRect xOff="16327" yOff="0" xSize="3266" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/2017/tileID_614.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3267" RasterYSize="3464" DataType="Int32" BlockXSize="256" BlockYSize="256" />
+      <SrcRect xOff="0" yOff="0" xSize="3267" ySize="3464" />
+      <DstRect xOff="19592" yOff="0" xSize="3267" ySize="3464" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="0">G:/CHACO/_LANDSAT/Composites/annual_Metrics/VRT_Landsat-bands1-6_mean_2017.vrt</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="29390" RasterYSize="31171" DataType="Int32" BlockXSize="128" BlockYSize="128" />
+      <SrcRect xOff="0" yOff="0" xSize="29390" ySize="31171" />
+      <DstRect xOff="0" yOff="0" xSize="29390" ySize="31171" />
+    </SimpleSource>
+  </VRTRasterBand>
+</VRTDataset>
