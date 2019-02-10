@@ -18,69 +18,44 @@ print("")
 # ####################################### FILES AND FOLDER-PATHS ############################################## #
 root_folder = 'D:/Teaching/WS_2018-2019/MSc-M1_Quantitative-methods/Data/'
 shp = ogr.Open(root_folder + "Locations.shp")
-output = root_folder + "Landsat/Landsat_SR-data.csv"
+output = root_folder + "MODIS/MODIS_EVI-data.csv"
 # ####################################### SEARCH PARAMETERS ################################################### #
 startDate = '2000-01-01'
 endDate = '2018-10-31'
 # ####################################### FUNCTIONS ########################################################### #
-def Retrieve_SR01_fromGEE_Point(geometry, startDate, endDate):
+def Retrieve_EVI_Point(geometry, startDate, endDate):
     # startDate & endDate has to be in the format "2018-01-01"
-    # Coordinate system has to be be WGS84 (EPSG:4326)
-    # Material for masking
-    # --> https://gis.stackexchange.com/questions/274048/apply-cloud-mask-to-landsat-imagery-in-google-earth-engine-python-api
-    # --> https://github.com/gee-community/gee_tools
+    # --> https://mygeoblog.com/2017/09/08/modis-cloud-masking/
     def getQABit(image, start, end, newName):
         pattern = 0
         for i in range(start, end + 1):
             pattern += 2 ** i
         return image.select([0], [newName]).bitwiseAnd(pattern).rightShift(start)
-
     def maskQuality(image):
         # Select the QA band.
-        QA = image.select('pixel_qa')
+        QA = image.select('QA')
         # Get the internal_cloud_algorithm_flag bit.
-        shadow = getQABit(QA, 3, 3, 'cloud_shadow')
-        cloud = getQABit(QA, 5, 5, 'cloud')
-        water = getQABit(QA, 2, 2,'water')
-        #  var cloud_confidence = getQABits(QA,6,7,  'cloud_confidence')
-        #cirrus = getQABit(QA, 9, 9, 'cirrus')
+        goodData = getQABit(QA, 0, 0, 'clear_sky')
         # Return an image masking out cloudy areas.
-        return image.updateMask(cloud.eq(0)).updateMask(shadow.eq(0).updateMask(water.eq(0)))
+        return image.updateMask(goodData.eq(1))
 
     # Build an earth engine feature
     xCoord = geometry.GetX()
     yCoord = geometry.GetY()
     pts = {'type': 'Point', 'coordinates': [xCoord, yCoord]}
     # Now extract the individual data from the collections based on the definitions above
-    # Define the band names that we want to extract
-    # l8bands = ee.List(['B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B1', 'B10', 'B11', 'pixel_qa'])
-    # l8band_names = ee.List(['B', 'G', 'R', 'NIR', 'SWIR1', 'SWIR2', 'UB', 'T1', 'T2','pixel_qa'])
-    l8bands = ee.List(['B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'pixel_qa'])
-    l8band_names = ee.List(['B', 'G', 'R', 'NIR', 'SWIR1', 'SWIR2', 'pixel_qa'])
-    l457bands = ee.List(['B1', 'B2', 'B3', 'B4', 'B5', 'B7', 'pixel_qa'])
-    l457band_names = ee.List(['B', 'G', 'R', 'NIR', 'SWIR1', 'SWIR2', 'pixel_qa'])
-    # Landsat 8
-    coll_L8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_SR'). \
+    # MODIS EVI Terra
+    mod_EVI = ee.ImageCollection('MODIS/006/MOD13Q1'). \
         filterDate(startDate, endDate). \
-        select(l8bands, l8band_names). \
-        map(maskQuality)
-    # Landsat 7
-    coll_L7 = ee.ImageCollection('LANDSAT/LE07/C01/T1_SR'). \
+        select('EVI')#.\
+        #map(maskQuality)
+    # MODIS EVI aqua
+    myd_EVI = ee.ImageCollection('MODIS/006/MYD13Q1'). \
         filterDate(startDate, endDate). \
-        select(l457bands, l457band_names). \
-        map(maskQuality)
-    # Landsat 5
-    coll_L5 = ee.ImageCollection('LANDSAT/LT05/C01/T1_SR'). \
-        filterDate(startDate, endDate). \
-        select(l457bands, l457band_names). \
-        map(maskQuality)
-    # Landsat 4
-    coll_L4 = ee.ImageCollection('LANDSAT/LT04/C01/T1_SR'). \
-        filterDate(startDate, endDate). \
-        select(l457bands, l457band_names). \
-        map(maskQuality)
+        select('EVI')#.\
+        #map(maskQuality)
     # Merge
-    values_all = ee.ImageCollection(coll_L4.merge(coll_L5).merge(coll_L7).merge(coll_L8)).getRegion(pts, 30).getInfo()
+    values_all = ee.ImageCollection(mod_EVI.merge(myd_EVI)).getRegion(pts, 30).getInfo()
     return values_all
 # ####################################### COLLECT THE VALUES PER POINT ######################################## #
 print("Extract values for points in SHP-file")
@@ -97,7 +72,7 @@ while feat:
 # Now get the geometry and do stuff
     geom = feat.GetGeometryRef()
 # Now extract the individual data from the collections based on the definitions above
-    vals = Retrieve_SR01_fromGEE_Point(geometry=geom, startDate=startDate, endDate=endDate)
+    vals = Retrieve_EVI_Point(geometry=geom, startDate=startDate, endDate=endDate)
 # Add to the header-line the Variable-Name Point-ID, and add it to each element as well
     vals[0].append("Point-ID")
     for i in range(1,len(vals)):
@@ -107,8 +82,7 @@ while feat:
     for val in vals:
         if not None in val:
             sceneID = val[0]
-            p1 = sceneID.find("L")
-            sceneID = sceneID[p1:]
+            sceneID = sceneID[2:]
             val[0] = sceneID
             val_reduced.append(val)
 # Append to output then get next feature

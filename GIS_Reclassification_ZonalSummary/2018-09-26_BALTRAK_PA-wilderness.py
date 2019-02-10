@@ -14,8 +14,8 @@ print("")
 # ############################################################################################################# #
 workFolder = "Y:/Baumann/BALTRAK/Connectivity/"
 shapeFolder = "D:/Research/Publications/Publications-in-preparation/baumann-etal_LandUseChange-Wilderness_Kostanay-KZ/Shapefiles/Summary_Shapes/"
-PA15 = bt.baumiVT.CopyToMem(shapeFolder + "PA_2015.shp")
-outputFile = "D:/Research/Publications/Publications-in-preparation/baumann-etal_LandUseChange-Wilderness_Kostanay-KZ/____PA_summaries.csv"
+PA15 = ogr.Open(shapeFolder + "PA_2015.shp")
+outputFile = "D:/Research/Publications/Publications-in-preparation/baumann-etal_LandUseChange-Wilderness_Kostanay-KZ/____PA_summaries_con.csv"
 #random.seed(1) # for reproducability of the results
 nPoints = 100
 bufferStep = 3000
@@ -42,29 +42,24 @@ allRasters = [#["SUM", "1990", "NN", "01_Layer-SUM/SUM_Wilderness_1990.tif"],
               #["SUM", "2015", "th10", "01_Layer-SUM/SUM_Wilderness_2015_th10.tif"],
               #["SUM", "2015", "th50", "01_Layer-SUM/SUM_Wilderness_2015_th50.tif"],
               #["SUM", "2015", "th90", "01_Layer-SUM/SUM_Wilderness_2015_th90.tif"],
-              #["SUM", "2015-1990", "th10", "01_Layer-SUM/SUM_Wilderness_2015-1990_th10.tif"],
-              #["SUM", "2015-1990", "th50", "01_Layer-SUM/SUM_Wilderness_2015-1990_th50.tif"],
-              #["SUM", "2015-1990", "th90", "01_Layer-SUM/SUM_Wilderness_2015-1990_th90.tif"],
-              ["PRODUCT", "1990", "NN", "02_Layer-PRODUCT/PRODUCT_Wilderness_1990.tif"],
-              ["PRODUCT", "2015", "th10", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th10.tif"],
-              ["PRODUCT", "2015", "th50", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th50.tif"],
-              ["PRODUCT", "2015", "th90", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th90.tif"],
-              ["PRODUCT", "2015-1990", "th10", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th10.tif"],
-              ["PRODUCT", "2015-1990", "th50", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th50.tif"],
-              ["PRODUCT", "2015-1990", "th90", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th90.tif"]]#,
+              #["PRODUCT", "1990", "NN", "02_Layer-PRODUCT/PRODUCT_Wilderness_1990.tif"],
+              #["PRODUCT", "2015", "th10", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th10.tif"],
+              #["PRODUCT", "2015", "th50", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th50.tif"],
+              #["PRODUCT", "2015", "th90", "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th90.tif"]]#,
+			  ["PRODUCT", "1990", "NN", "Results/Buffer_removed_NAs/Normalized/PRODUCT_Wilderness_1990_60_nodes_50_cum_curmap_nobuff_noNA_normalized.tif"],
+              ["PRODUCT", "2015", "th10", "Results/Buffer_removed_NAs/Normalized/PRODUCT_Wilderness_2015_th10_60_nodes_50_cum_curmap_nobuff_noNA_normalized.tif"],
+              ["PRODUCT", "2015", "th50", "Results/Buffer_removed_NAs/Normalized/PRODUCT_Wilderness_2015_th50_60_nodes_50_cum_curmap_nobuff_noNA_normalized.tif"],
+              ["PRODUCT", "2015", "th90", "Results/Buffer_removed_NAs/Normalized/PRODUCT_Wilderness_2015_th90_60_nodes_50_cum_curmap_nobuff_noNA_normalized.tif"]]#,
               #["MIN", "1990", "NN", "03_Layer-MIN/MIN_Wilderness_1990.tif"],
               #["MIN", "2015", "th10", "03_Layer-MIN/MIN_Wilderness_2015_th10.tif"],
               #["MIN", "2015", "th50", "03_Layer-MIN/MIN_Wilderness_2015_th50.tif"],
-              #["MIN", "2015", "th90", "03_Layer-MIN/MIN_Wilderness_2015_th90.tif"],
-              #["MIN", "2015-1990", "th10", "03_Layer-MIN/MIN_Wilderness_2015-1990_th10.tif"],
-              #["MIN", "2015-1990", "th50", "03_Layer-MIN/MIN_Wilderness_2015-1990_th50.tif"],
-              #["MIN", "2015-1990", "th90", "03_Layer-MIN/MIN_Wilderness_2015-1990_th90.tif"]]
+              #["MIN", "2015", "th90", "03_Layer-MIN/MIN_Wilderness_2015_th90.tif"]]
 
 # # (2) LOOP THROUGH PROTECTED AREAS
 outTab = [["PA_Name", "Kaz_Cat", "Year", "Period", "Inside_YN", "Buffer", "Mean", "SD", "Min", "Lower_whisker", "Q25", "Median", "Q75", "Upper_whisker", "Max", "RasterLayer", "Threshold", "Year"]]
 lyr = PA15.GetLayer()
 # Make a selection
-lyr.SetAttributeFilter("Name NOT IN ('Turgaiskii Zakaznik', 'Irgiz-Turgay State Nature Reserve', 'Tengiz-Korgalzhynskii Gosudarstvennyi Zapovednik - Extension')")
+lyr.SetAttributeFilter("Name NOT IN ('Turgaiskii Zakaznik', 'Irgiz-Turgay State Nature Reserve', 'Tengiz-Korgalzhynskii Gosudarstvennyi Zapovednik - Extension', 'Burabai National Park', 'Tengiz-Korgalzhynskii Gosudarstvennyi Zapovednik')")
 feat = lyr.GetNextFeature()
 while feat:
 	PAname = feat.GetField("Name")
@@ -85,6 +80,7 @@ while feat:
 		gt = ds_open.GetGeoTransform()
 		pr = ds_open.GetProjection()
 		rb = ds_open.GetRasterBand(1)
+		noData = rb.GetNoDataValue()
 		dType = bt.baumiRT.GetDataTypeHexaDec(rb.DataType)
 	# (1) Calculate the Wilderness and connectivity inside the PAs --> only if IN_yn == 1
 		if not PAinside == 1:
@@ -101,18 +97,19 @@ while feat:
 				y_sample = random.uniform(ext[2], ext[3])
 				geomPoint = ogr.Geometry(ogr.wkbPoint)
 				geomPoint.AddPoint(x_sample, y_sample)
-				#print(geomPoint)
-				#print(geomPA)
 			# Check if the point is in the shpLYR, if yes, then get the raster-value
 				intersect = geomPA.Intersection(geomPoint)
-				#print(intersect)
 				if intersect.ExportToWkt() != 'GEOMETRYCOLLECTION EMPTY':
 					px = int((x_sample - gt[0]) / gt[1])
 					py = int((y_sample - gt[3]) / gt[5])
-					structVar = rb.ReadRaster(px, py, 1, 1)
-					val = struct.unpack(dType, structVar)[0]
-					values.append(val)
-					n += 1
+					try:
+						structVar = rb.ReadRaster(px, py, 1, 1)
+						val = struct.unpack(dType, structVar)[0]
+						if val != noData:
+							values.append(val)
+							n += 1
+					except:
+						n = n
 		# Once we have 100 values in the list, calculate the statistics, append to output
 			outTab.append(CalcSummaries(values, 0))
 	# (2) Calculate the Wilderness and connectivity outside the PAs --> in 1km buffers
@@ -134,10 +131,14 @@ while feat:
 				if intersect.ExportToWkt() != 'GEOMETRYCOLLECTION EMPTY':
 					px = int((x_sample - gt[0]) / gt[1])
 					py = int((y_sample - gt[3]) / gt[5])
-					structVar = rb.ReadRaster(px, py, 1, 1)
-					val = struct.unpack(dType, structVar)[0]
-					values.append(val)
-					n += 1
+					try:
+						structVar = rb.ReadRaster(px, py, 1, 1)
+						val = struct.unpack(dType, structVar)[0]
+						if val != noData:
+							values.append(val)
+							n += 1
+					except:
+						n = n
 			# Calculate statistics, add to output and increase buffer
 			#bt.baumiVT.SaveGEOMtoFile(geomBuff_only, "D:/test.shp")
 			#exit(0)
