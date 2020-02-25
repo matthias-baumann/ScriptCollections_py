@@ -13,15 +13,15 @@ if __name__ == '__main__':
     print("Starting process, time:" +  starttime)
     print("")
 # ####################################### FOLDER PATHS AND BASIC VARIABLES FOR PROCESSING ##################### #
-    rootFolder = "Z:/Warfare/"
+    rootFolder = "D:/baumamat/Warfare/"
     pol_shp = rootFolder + "_SHPs/BIOMES_TropicsSavannas_10kmGrid_polygons.shp"
-    out_csv = rootFolder + "_DataSummaries/Hansen_Summaries_ALL_20190129.csv"
+    out_csv = rootFolder + "_DataSummaries/Hansen_Summaries_ALL_20190821.csv"
     forest = rootFolder + "_Variables/Forest/Forest2000.vrt"
     gain = rootFolder + "_Variables/Forest/Gain.vrt"
     loss = rootFolder + "_Variables/Forest/LossYear.vrt"
     #epsg_to = 54009 # Mollweide
     nPackages = 300
-    nr_cores = 60
+    nr_cores = 40
 # ####################################### PROCESSING ########################################################## #
 # (1) Build job list
     jobList = []
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     outDS = [["UniqueID",
               "F2000_km_th25", "FL2001_km", "FL2002_km", "FL2003_km", "FL2004_km", "FL2005_km",
               "FL2006_km", "FL2007_km", "FL2008_km", "FL2009_km", "FL2010_km", "FL2011_km", "FL2012_km","FL2013_km",
-              "FL2014_km", "FL2015_km", "FL2016_km", "FL2017_km", "Gain_km"]]
+              "FL2014_km", "FL2015_km", "FL2016_km", "FL2017_km", "FL_2018_km", "Gain_km"]]
     # Now extract the information from all the evaluations
     # 1st loop --> the different chunks
     for result in job_results:

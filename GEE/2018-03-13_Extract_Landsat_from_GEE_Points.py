@@ -16,12 +16,12 @@ print("--------------------------------------------------------")
 print("Starting process, time: " +  starttime)
 print("")
 # ####################################### FILES AND FOLDER-PATHS ############################################## #
-root_folder = 'D:/Teaching/WS_2018-2019/MSc-M1_Quantitative-methods/Data/'
-shp = ogr.Open(root_folder + "Locations.shp")
-output = root_folder + "Landsat/Landsat_SR-data.csv"
+root_folder = 'D:/_TEACHING/__Classes-Modules_HUB/MSc-M1_Quantitative-Methods/WS_2019-2020/Data/'
+shp = ogr.Open(root_folder + "Locations_newALL.shp")
+output = root_folder + "Landsat/Landsat_SR-data_20200112.csv"
 # ####################################### SEARCH PARAMETERS ################################################### #
 startDate = '2000-01-01'
-endDate = '2018-10-31'
+endDate = '2019-12-31'
 # ####################################### FUNCTIONS ########################################################### #
 def Retrieve_SR01_fromGEE_Point(geometry, startDate, endDate):
     # startDate & endDate has to be in the format "2018-01-01"
@@ -92,7 +92,7 @@ feat = lyr.GetNextFeature()
 while feat:
 #for feat in tqdm(lyr):
 # Extract ID-Info from SHP-file and other informations
-    Pid = feat.GetField("Id")
+    Pid = feat.GetField("ID")
     print("Processing Point ID " + str(Pid))
 # Now get the geometry and do stuff
     geom = feat.GetGeometryRef()

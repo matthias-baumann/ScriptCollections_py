@@ -1,7 +1,7 @@
 # ####################################### LOAD REQUIRED LIBRARIES ############################################# #
 import time
 import math
-import gdal, osr
+import gdal, osr, ogr
 from gdalconst import *
 import numpy as np
 from ZumbaTools._Raster_Tools import *

@@ -14,8 +14,8 @@ print("")
 # ####################################### DRIVERS AND FOLDER-PATHS ############################################ #
 drvR = gdal.GetDriverByName('GTiff')
 drvMemR = gdal.GetDriverByName('MEM')
-inputFolder = "Z:/Baumann/_ANALYSES/LandUseChange_1985-2000-2015_UpdateWithRadar/Classification/Run_03/"
-outputFolder = "D:/Projects-and-Publications/Publications/Publications-in-preparation/Torres-etal_Peccari-Habitat-LandCover/New_Maps/"
+inputFolder = "Y:/Baumann/_ANALYSES/LandUseChange_1985-2000-2015_UpdateWithRadar/Classification/Run_03/"
+outputFolder = "D:/_RESEARCH/Publications/Publications-in-preparation/Torres-etal_Peccari-Habitat-LandCover/New_Maps/"
 inClass = gdal.Open((inputFolder + "Run03_clumpEliminate_crop.tif"))
 # ####################################### FUNCTIONS ########################################################### #
 def ReclassifyToMemory(inRaster, tupel):
@@ -130,7 +130,7 @@ print("Processing year: 1985")
 print("Reclassify")
 reclassRaster = ReclassifyToMemory(inClass,
                                    [[0,0],[1,1],[2,0],[3,0],[4,2],[5,3],[6,0],[7,0],[8,0],[9,0],
-                                    [10,1],[11,1],[12,1],[13,1],[14,1],[15,0],[16,2],[17,1],[18,0],[19,0],[20,3],[21,3],[22,0],[23,0]])
+                                    [10,1],[11,1],[12,1],[13,1],[14,1],[15,0],[16,0],[17,1],[18,0],[19,0],[20,3],[21,3],[22,0],[23,0]])
 print("Calculate percentages of land cover")
 print("Forest")
 perForest = Aggregate(reclassRaster, 33, 1)

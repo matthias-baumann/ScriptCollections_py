@@ -10,7 +10,7 @@ print("Starting process, time:" + starttime)
 print("")
 # ####################################### FOLDER PATHS AND FUNCTIONS ########################################## #
 dl_Folder = "D:/baumamat/Warfare/_Variables/Forest/"
-baseURL = "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2017-v1.5/Hansen_GFC-2017-v1.5"
+baseURL = "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2018-v1.6/Hansen_GFC-2018-v1.6"
 layers = [["_treecover2000_", "Forest2000"], ["_gain_", "Gain"], ["_lossyear_", "LossYear"]]
 ext = ".tif"
 x_dir = ['180W', '170W', '160W', '150W', '140W', '130W', '120W', '110W', '100W', '090W', '080W', '070W', '060W', '050W', '040W', '030W', '020W', '010W',

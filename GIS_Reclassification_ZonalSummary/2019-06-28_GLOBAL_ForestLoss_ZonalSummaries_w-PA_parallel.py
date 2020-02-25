@@ -15,13 +15,14 @@ if __name__ == '__main__':
 # ####################################### FOLDER PATHS AND BASIC VARIABLES FOR PROCESSING ##################### #
     rootFolder = "P:/"
     eco_shp = rootFolder + "data/Olson-Ramankutty_Intersection_SinglePart/WWF_potentialVeg_intersect_single_1degree_UN_GADM.shp"
-    out_csv = rootFolder + "data/results/Hansen_Summaries_ALL_th25_20190616.csv"
+    out_csv = rootFolder + "data/results/Hansen_Summaries_ALL_th25_20190628.csv"
     forest = "D:/baumamat/Warfare/_Variables/Forest/Forest2000.vrt"
     gain = "D:/baumamat/Warfare/_Variables/Forest/Gain.vrt"
     loss = "D:/baumamat/Warfare/_Variables/Forest/LossYear.vrt"
+    PAs = rootFolder + "data/WDPA/WDPA_May2019-shapefile-polygons.shp"
     epsg_to = 54009 # Mollweide
     nPackages = 300
-    nr_cores = 50
+    nr_cores = 40
 # ####################################### PROCESSING ########################################################## #
 # (1) Build job list
     jobList = []
@@ -40,7 +41,8 @@ if __name__ == '__main__':
                'epsg': epsg_to,
                'forest_raster': forest,
                'gain_raster': gain,
-               'loss_raster': loss}
+               'loss_raster': loss,
+               'PA_shape': PAs}
         jobList.append(job)
 # (2) Build Worker_Function
     def SumFunc(job):
@@ -58,6 +60,11 @@ if __name__ == '__main__':
         target_SR = osr.SpatialReference()
         target_SR.ImportFromEPSG(job['epsg'])
         trans = osr.CoordinateTransformation(eco_SR, target_SR)
+        # Open the WDPA, build coordinate transformation here as well
+        #wdpa = ogr.Open(job['PA_shape'])
+        wdpa = bt.vectorTools.CopyToMem(job['PA_shape'])
+        wdpa_lyr = wdpa.GetLayer()
+        wdpa_trans = osr.CoordinateTransformation(eco_SR, wdpa_lyr.GetSpatialRef())
         # Define the output-list that we want to return
         outList = []
         # Now loop through the selected features in our lyr
@@ -74,16 +81,10 @@ if __name__ == '__main__':
             UID_GridID = feat.GetField("UID_GID_GA")
             country = feat.GetField("NAME_0")
             countryISO = feat.GetField("ISO3")
-            # PA info
-            #UID_wPA = feat.GetField("UID_wPA")
-            #WDPAID = feat.GetField("WDPAID")
-            #PAdef = feat.GetField("PA_DEF")
-            #IUCNcat = feat.GetField("IUCN_CAT")
-            #status = feat.GetField("STATUS")
-            #statusYR = feat.GetField("STATUS_YR")
     # Instantiate output and take the geometry of the feature, transform it to our epsg
-            vals = [UID_GridID, UID, ecoID, ecoName, navinName, biome, prop, country, countryISO]#, UID_wPA, WDPAID, PAdef, IUCNcat, status, statusYR]
+            vals = [UID_GridID, UID, ecoID, ecoName, navinName, biome, prop, country, countryISO]
             geom = feat.GetGeometryRef()
+            geom_cl = geom.Clone()
             geom.Transform(trans)
     # Rasterize the geometry, pixelSize is 30m
         # Create new SHP-file in memory to which we copy the geometry
@@ -124,7 +125,7 @@ if __name__ == '__main__':
                 loss_np = loss.GetRasterBand(1).ReadAsArray(0, 0, x_res, y_res)
                 gain_np = gain.GetRasterBand(1).ReadAsArray(0, 0, x_res, y_res)
             # Now extract the summaries
-                # Forest 2000 --> 25% and 40% canopy
+                # Forest 2000 --> 25% canopy
                 forest_np_25 = np.where((geom_np == 1) & (forest_np >= 25), 1, 0)
                 forest_np_25 = forest_np_25.astype(np.uint8)
                 f25 = forest_np_25.sum() * 30 * 30 / 1000000
@@ -140,9 +141,42 @@ if __name__ == '__main__':
                 gain_np_mask = gain_np_mask.astype(np.uint8)
                 gn = gain_np_mask.sum() * 30 * 30 / 1000000
                 vals.append(format(gn, '.5f'))
+            # Calculate the array of forest area in last year -->
+                forest_np_2018 = np.where((forest_np_25 == 1) & (loss_np == 0), 1, 0)
+                forest_np_2018 = forest_np_2018.astype(np.uint8)
+                forest_np_2018_area = forest_np_2018.sum() * 30 * 30 / 1000000
+                vals.append(format(forest_np_2018_area, '.5f'))
+            # Now rasterize the PA-layer
+                # Set First a spatial filter
+                geom_cl.Transform(wdpa_trans)
+                wdpa_lyr.SetSpatialFilter(geom_cl)
+                # Loop through the categories --> Ia, Ib, II, III, IV, V, VI
+                for cat in ['Ia', 'Ib', 'II', 'III', 'IV', 'V', 'VI']:
+                    #print(cat)
+                    #wdpa_lyr.SetAttributeFilter("STATUS IN ('Designated', 'Established') AND IUCN_CAT IN ('Ia', 'Ib', 'II', 'III', 'IV', 'V', 'VI')")
+                    clause = "STATUS IN ('Designated', 'Established') AND IUCN_CAT IN ('" + cat + "')"
+                    wdpa_lyr.SetAttributeFilter(clause)
+                    if wdpa_lyr.GetFeatureCount() > 0:
+                        wdpa_ras = drvMemR.Create('', x_res, y_res, gdal.GDT_Byte)
+                        wdpa_ras.SetProjection(target_SR.ExportToWkt())
+                        wdpa_ras.SetGeoTransform((x_min, 30, 0, y_max, 0, -30))
+                        gdal.RasterizeLayer(wdpa_ras, [1], wdpa_lyr, burn_values=[1])#, options=['ATTRIBUTE=IUCN_CAT'])
+                        #bt.baumiRT.CopyMEMtoDisk(wdpa_ras, rootFolder + "wdpa.tif")
+                        # Load the new raster to np-arry, do the calculation
+                        wdpa_cat = wdpa_ras.GetRasterBand(1).ReadAsArray(0, 0, x_res, y_res)
+                        forest18_wdpa_cat = np.where((forest_np_2018 == 1) & (wdpa_cat == 1), 1, 0)
+                        forest18_wdpa_cat = forest18_wdpa_cat.astype(np.uint8)
+                        forest18_wdpa_cat_area = forest18_wdpa_cat.sum() * 30 * 30 / 1000000
+                        #print(forest18_wdpa_cat_area)
+                        vals.append(format(forest18_wdpa_cat_area, '.5f'))
+                        wdpa_lyr.SetAttributeFilter(None)
+                    else:
+                        vals.append(0)
+                # Remove the spatial filter
+                wdpa_lyr.SetSpatialFilter(None)
         # If the polygon is < 1px in x- and y-direction, then write zeros for everything
             else:
-                vals.extend([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+                vals.extend([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
         # Append the values to the output-DS, then take the next feature
             outList.append(vals)
             feat = lyr.GetNextFeature()
@@ -157,9 +191,10 @@ if __name__ == '__main__':
     outDS = [["UID_GridID_GA", "UID", "ECO_ID", "ECO_Name", "Navin_Name", "BIOME", "Prop_in_Navin", "Country_Name", "Country_ISO3",
               "F2000_km_th25", "FL2001_km", "FL2002_km", "FL2003_km", "FL2004_km", "FL2005_km",
               "FL2006_km", "FL2007_km", "FL2008_km", "FL2009_km", "FL2010_km", "FL2011_km", "FL2012_km","FL2013_km",
-              "FL2014_km", "FL2015_km", "FL2016_km", "FL2017_km", "FL2018_km", "Gain_km",
-              "F2000_km_th25_IUCN-I", "F2000_km_th25_IUCN-I", "F2000_km_th25_IUCN-I", "F2000_km_th25_IUCN-I"]]
+              "FL2014_km", "FL2015_km", "FL2016_km", "FL2017_km", "FL2018_km", "Gain_km", "F2018_km_h25",
+              "F2018_km_th25_IUCN-Ia", "F2018_km_th25_IUCN-Ib", "F2018_km_th25_IUCN-II", "F2018_km_th25_IUCN-III", "F2018_km_th25_IUCN-IV", "F2018_km_th25_IUCN-V", "F2018_km_th25_IUCN-VI"]]
     # Now extract the information from all the evaluations
+    #exit(0)
     # 1st loop --> the different chunks
     for result in job_results:
         # 2nd loop --> all outputs in each chunk

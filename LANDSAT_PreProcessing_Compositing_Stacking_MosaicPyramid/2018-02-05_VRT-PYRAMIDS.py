@@ -9,9 +9,9 @@ print("--------------------------------------------------------")
 print("Starting process, time:" +  starttime)
 print("")
 # ####################################### FUNCTIONS, FOLDER PATHS AND BASIC VARIABLES ######################### #
-root_folder = "G:/CHACO/_LANDSAT/drySeason_Metrics/1991/"
-outVRT = "G:/CHACO/_LANDSAT/drySeason_Metrics/VRT_Landsat-b1-6_mean_1991.vrt"
-outTXT = "G:/CHACO/_LANDSAT/drySeason_Metrics/files.txt"
+root_folder = "Z:/CHACO/_LANDSAT/annual_Metrics/2018/"
+outVRT = "Z:/CHACO/_LANDSAT/annual_Metrics/VRT_Landsat-ALL-bands_2018.vrt"
+outTXT = "Z:/CHACO/_LANDSAT/annual_Metrics/files.txt"
 # #### (1) BUILD OUTPUT TEXT FILES WITH PATHS FROM THE DIFFERENT FOLDERS
 print("Build List")
 finalFileList = []
@@ -28,12 +28,12 @@ f_open.close()
 # #### (3) BUILD VRT
 print("Build VRT")
 command =  "gdalbuildvrt.exe -vrtnodata 0 -input_file_list " + outTXT + " " + outVRT
-#os.system(command)
+os.system(command)
 
 print("Calculate Pyramids, vrt")
 command = "gdaladdo.exe " + outVRT + " 2 4 8 16 32 64"
-os.system(command)
-#os.remove(outTXT)
+#os.system(command)
+os.remove(outTXT)
 
 # ####################################### END TIME-COUNT AND PRINT TIME STATS################################## #
 print("")

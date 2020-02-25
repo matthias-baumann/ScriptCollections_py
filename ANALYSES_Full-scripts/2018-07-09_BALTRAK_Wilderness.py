@@ -232,21 +232,24 @@ ZimLetDis15_90 = ZimLetDist15_90norm.GetRasterBand(1).ReadAsArray(0, 0, ZimLetDi
 # WriteAndMask(diff1590_50, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015-1990_th50.tif")
 # WriteAndMask(diff1590_90, shpRas, outputFolder + "01_Layer-SUM/SUM_Wilderness_2015-1990_th90.tif")
 #
-# print("Product of layers")
-# prod90 = crop90 * settDis90 * ZimLetDis90
-# prod15_10 = crop15 * settDis15_10 * ZimLetDis15_10
-# prod15_50 = crop15 * settDis15_50 * ZimLetDis15_50
-# prod15_90 = crop15 * settDis15_90 * ZimLetDis15_90
+print("Product of layers")
+prod90 = crop90 * settDis90 * ZimLetDis90
+prod15_10 = crop15 * settDis15_10 * ZimLetDis15_10
+prod15_50 = crop15 * settDis15_50 * ZimLetDis15_50
+prod15_90 = crop15 * settDis15_90 * ZimLetDis15_90
 # diff1590_10 = prod15_10 - prod90
 # diff1590_50 = prod15_50 - prod90
 # diff1590_90 = prod15_90 - prod90
-# WriteAndMask(prod90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_1990.tif")
-# WriteAndMask(prod15_10, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th10.tif")
-# WriteAndMask(prod15_50, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th50.tif")
-# WriteAndMask(prod15_90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th90.tif")
-# WriteAndMask(diff1590_10, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th10.tif")
-# WriteAndMask(diff1590_50, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th50.tif")
-# WriteAndMask(diff1590_90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th90.tif")
+diff1590_10 = prod90 - prod15_10
+diff1590_50 = prod90 - prod15_50
+diff1590_90 = prod90 - prod15_90
+WriteAndMask(prod90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_1990.tif")
+WriteAndMask(prod15_10, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th10.tif")
+WriteAndMask(prod15_50, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th50.tif")
+WriteAndMask(prod15_90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015_th90.tif")
+WriteAndMask(diff1590_10, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th10.tif")
+WriteAndMask(diff1590_50, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th50.tif")
+WriteAndMask(diff1590_90, shpRas, outputFolder + "02_Layer-PRODUCT/PRODUCT_Wilderness_2015-1990_th90.tif")
 #
 # print("Minimum of layers")
 # min90 = np.minimum.reduce([crop90, settDis90, ZimLetDis90])
@@ -269,9 +272,12 @@ max90 = np.maximum.reduce([crop90, settDis90, ZimLetDis90])
 max15_10 = np.maximum.reduce([crop15, settDis15_10, ZimLetDis15_10])
 max15_50 = np.maximum.reduce([crop15, settDis15_50, ZimLetDis15_50])
 max15_90 = np.maximum.reduce([crop15, settDis15_90, ZimLetDis15_90])
-diff1590_10 = max15_10 - max90
-diff1590_50 = max15_50 - max90
-diff1590_90 = max15_90 - max90
+# diff1590_10 = max15_10 - max90
+# diff1590_50 = max15_50 - max90
+# diff1590_90 = max15_90 - max90
+diff1590_10 = max90 - max15_10
+diff1590_50 = max90 - max15_50
+diff1590_90 = max90 - max15_90
 WriteAndMask(max90, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_1990.tif")
 WriteAndMask(max15_10, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015_th10.tif")
 WriteAndMask(max15_50, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015_th50.tif")
@@ -281,13 +287,16 @@ WriteAndMask(diff1590_50, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_20
 WriteAndMask(diff1590_90, shpRas, outputFolder + "04_Layer-MAX/MAX_Wilderness_2015-1990_th90.tif")
 
 print("Mean of layers")
-mean90 = crop90 + settDis90 + ZimLetDis90
+mean90 = (crop90 + settDis90 + ZimLetDis90) / 3
 mean15_10 = (crop15 + settDis15_10 + ZimLetDis15_10) / 3
 mean15_50 = (crop15 + settDis15_50 + ZimLetDis15_10) / 3
 mean15_90 = (crop15 + settDis15_90 + ZimLetDis15_10) / 3
-diff1590_10 = mean15_10 - mean90
-diff1590_50 = mean15_50 - mean90
-diff1590_90 = mean15_90 - mean90
+# diff1590_10 = mean15_10 - mean90
+# diff1590_50 = mean15_50 - mean90
+# diff1590_90 = mean15_90 - mean90
+diff1590_10 = mean90 - mean15_10
+diff1590_50 = mean90 - mean15_50
+diff1590_90 = mean90 - mean15_90
 WriteAndMask(mean90, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_1990.tif")
 WriteAndMask(mean15_10, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_2015_th10.tif")
 WriteAndMask(mean15_50, shpRas, outputFolder + "05_Layer-MEAN/MEAN_Wilderness_2015_th50.tif")
