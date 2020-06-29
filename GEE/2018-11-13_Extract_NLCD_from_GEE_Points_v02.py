@@ -19,39 +19,7 @@ print("")
 root_folder = 'D:/_TEACHING/__Classes-Modules_HUB/MSc-M1_Quantitative-Methods/WS_2019-2020/Data/'
 shp = ogr.Open(root_folder + "Locations_newALL.shp")
 output = root_folder + "NLCD-data.csv"
-# ####################################### SEARCH PARAMETERS ################################################### #
-startDate = '2000-01-01'
-endDate = '2019-11-13'
 # ####################################### FUNCTIONS ########################################################### #
-def Retrieve_SR01_fromGEE_Point(geometry, startDate, endDate):
-    # startDate & endDate has to be in the format "2018-01-01"
-    # Coordinate system has to be be WGS84 (EPSG:4326)
-    # Material for masking
-    def mask_clouds(img):
-        qa = img.select('QA60')
-        clouds = qa.bitwiseAnd(1 << 10).eq(0)
-        cirrus = qa.bitwiseAnd(1 << 11).eq(0)
-        full_mask = clouds.add(cirrus)
-        return img.updateMask(full_mask).divide(10000)
-
-    # Make band selection
-    s2bands = ee.List(['B4', 'B8', 'QA60'])
-    s2band_names = ee.List(['R', 'NIR', 'QA60'])
-
-    # Build an earth engine feature
-    xCoord = geometry.GetX()
-    yCoord = geometry.GetY()
-    pts = {'type': 'Point', 'coordinates': [xCoord, yCoord]}
-    # Now extract the individual data from the collections based on the definitions above
-    s2 = ee.ImageCollection('COPERNICUS/S2_SR').\
-        filter(ee.Filter.date(startDate, endDate)).\
-        select(s2bands, s2band_names).\
-        map(mask_clouds)
-
-    # Merge
-    values_all = s2.getRegion(pts, 30).getInfo()
-    return values_all
-
 def Retrieve_NLCD_fromGEE_Point(geometry):
 
     # Build an earth engine feature

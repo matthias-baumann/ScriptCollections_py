@@ -18,14 +18,14 @@ print("")
 drvMemR = gdal.GetDriverByName('MEM')
 drvMemV = ogr.GetDriverByName('Memory')
 workFolder = "D:/Google Drive/Warfare_ForestLoss/"
-outputFolder = "D:/OneDrive - Conservation Biogeography Lab/_RESEARCH/Publications/Publications-in-preparation/2020_Christiasen_Causality-conflict-forest-lss/Maps/"
-inDS = outputFolder + "data_xy_colombia_temporally_aggregated_20200424.txt"
+outputFolder = "D:/OneDrive - Conservation Biogeography Lab/_RESEARCH/Publications/Publications-submitted-in-review/2020_Christiasen_Causality-conflict-forest-lss/Maps/"
+inDS = outputFolder + "data_xy_colombia_temporally_aggregated_20200616.txt"
 COL = bt.baumiVT.CopyToMem(outputFolder + "SHP-Files/COL_country.shp")
 refSHP = workFolder + "_NewVariables_20190822/BIOMES_TropicsSavannas_10kmGrid_polygons.shp"
 # ####################################### PROCESSING ########################################################## #
 # (1) Load the UID-file into pandas df, merge with forest data
 ds = pd.read_csv(inDS, sep=" ", header='infer', usecols=['PolygonID', 'lon', 'lat', 'FL_km_cumulative', 'RoadDist'])
-ds['RoadDist_log10'] = np.log10(ds['RoadDist'] / 1000)
+ds['RoadDist_log10'] = np.log10(ds['RoadDist'])
 
 #ds = ds.fillna(99)
 # (2) Get the proj4 coordinate string from the shapefile
@@ -82,7 +82,7 @@ popDens.GetRasterBand(1).WriteArray(popDens_arr, 0, 0)
 
 # (11) write to disc
 # bt.baumiRT.CopyMEMtoDisk(FLcum, outputFolder + "COL_Cummulated_ForestLoss_2001-2018.tif")
-bt.baumiRT.CopyMEMtoDisk(popDens, outputFolder + "COL_RoadDist_log_km.tif")
+bt.baumiRT.CopyMEMtoDisk(popDens, outputFolder + "COL_RoadDist_log_update.tif")
 
 # (12) Delete temporary files
 [os.remove(outputFolder + f) for f in os.listdir(outputFolder) if f.find("_gpd") >= 0]
