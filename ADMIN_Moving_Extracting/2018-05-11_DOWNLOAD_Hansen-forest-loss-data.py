@@ -10,7 +10,7 @@ print("Starting process, time:" + starttime)
 print("")
 # ####################################### FOLDER PATHS AND FUNCTIONS ########################################## #
 dl_Folder = "D:/baumamat/Warfare/_Variables/Forest/"
-baseURL = "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2018-v1.6/Hansen_GFC-2018-v1.6"
+baseURL = "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2019-v1.7/Hansen_GFC-2019-v1.7"
 layers = [["_treecover2000_", "Forest2000"], ["_gain_", "Gain"], ["_lossyear_", "LossYear"]]
 ext = ".tif"
 x_dir = ['180W', '170W', '160W', '150W', '140W', '130W', '120W', '110W', '100W', '090W', '080W', '070W', '060W', '050W', '040W', '030W', '020W', '010W',
@@ -35,6 +35,7 @@ for y in y_dir:
         if not os.path.exists(g_out):
             urlretrieve(g_in, g_out)
         if not os.path.exists(l_out):
+            print(l_out)
             urlretrieve(l_in, l_out)
 # ####################################### END TIME-COUNT AND PRINT TIME STATS################################## #
 print("")

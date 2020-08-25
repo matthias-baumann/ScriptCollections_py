@@ -17,16 +17,16 @@ if __name__ == '__main__':
     print("")
 # ####################################### FOLDER PATHS AND BASIC VARIABLES FOR PROCESSING ##################### #
     rootFolder = "L:/_SHARED_DATA/AB_MB/"
-    point_shp = rootFolder + "Grid/TDFsSAcut_grid_3kmpoint_EPSG54009.shp"
-    eco_shp = rootFolder + "Study area/OlsonbasedSA_prj.shp"
-    out_csv = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009_summary_Hansen-th25_20190718.csv"
+    point_shp = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009.shp"
+    eco_shp = rootFolder + "OlsonbasedSA_prj.shp"
+    out_csv = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009_summary_Hansen-th10_20200813.csv"
     forest = "D:/baumamat/Warfare/_Variables/Forest/Forest2000.vrt"
     gain = "D:/baumamat/Warfare/_Variables/Forest/Gain.vrt"
     loss = "D:/baumamat/Warfare/_Variables/Forest/LossYear.vrt"
     uid_field = "Id"
     epsg_to = 54009 # Mollweide
     nPackages = 10000
-    nr_cores = 40
+    nr_cores = 25
 # ####################################### PROCESSING ########################################################## #
 # (1) Build job list
     jobList = []
@@ -64,14 +64,20 @@ if __name__ == '__main__':
         ecoLYR = ecoSHP.GetLayer()
         # Create coordinate transformation rule
         point_SR = lyr.GetSpatialRef()
-        target_SR = osr.SpatialReference()
-        target_SR.ImportFromEPSG(job['epsg'])
-        trans = osr.CoordinateTransformation(point_SR, target_SR)
+        #print(point_SR)
+        #time.sleep(1)
+        #point_SR.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
+        #target_SR = osr.SpatialReference()
+        #target_SR.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
+        #target_SR.ImportFromEPSG(job['epsg'])
+        #print(target_SR)
+        #exit(0)
+        #trans = osr.CoordinateTransformation(point_SR, target_SR)
         # Define the output pandas dataframe
         out_PD = pd.DataFrame(columns=['id_3000', 'x_3000', 'y_3000', 'id_1500', 'x_1500', 'y_1500', 'id_300', 'x_300', 'y_300',
                  'F2000_km', 'FL_2001_km', 'FL_2002_km', 'FL_2003_km', 'FL_2004_km', 'FL_2005_km', 'FL_2006_km',
                  'FL_2007_km', 'FL_2008_km', 'FL_2009_km', 'FL_2010_km', 'FL_2011_km', 'FL_2012_km', 'FL_2013_km',
-                 'FL_2014_km', 'FL_2015_km', 'FL_2016_km', 'FL_2017_km', 'FL_2018_km', 'ECO_ID', 'BIOME_NUM'])
+                 'FL_2014_km', 'FL_2015_km', 'FL_2016_km', 'FL_2017_km', 'FL_2018_km', 'FL_2019_km', 'ECO_ID', 'BIOME_NUM'])
         # Now loop through the selected features in our lyr
         feat = lyr.GetNextFeature()
         while feat:
@@ -80,7 +86,7 @@ if __name__ == '__main__':
             pointID = int(feat.GetField(job['id']))
     # Instantiate output and take the geometry of the feature
             geom = feat.GetGeometryRef()
-            geom.Transform(trans)
+            #geom.Transform(trans)
     # Extract the information about the ecoregion from the shapefile
             ecoLYR.SetSpatialFilter(geom)
             ecoFEAT = ecoLYR.GetNextFeature()
@@ -91,6 +97,7 @@ if __name__ == '__main__':
             ecoLYR.SetSpatialFilter(None)
     # Build square of point --> 1500m into x&y-direction needs to be adjusted
             geom_x, geom_y = geom.GetX(), geom.GetY()
+            #geom_x, geom_y = geom.GetY(), geom.GetX()
             square = ogr.Geometry(ogr.wkbLinearRing)
             square.AddPoint(geom_x - 1500, geom_y - 1500)
             square.AddPoint(geom_x - 1500, geom_y + 1500)
@@ -102,7 +109,7 @@ if __name__ == '__main__':
     # Rasterize the new geometry, pixelSize is 30m, because we work with Landsat forest loss data
         # Create new SHP-file in memory to which we copy the geometry
             geom_shp = drvMemV.CreateDataSource('')
-            geom_lyr = geom_shp.CreateLayer('geom', target_SR, geom_type=ogr.wkbMultiPolygon)
+            geom_lyr = geom_shp.CreateLayer('geom', point_SR, geom_type=ogr.wkbMultiPolygon)
             geom_lyrDefn = geom_lyr.GetLayerDefn()
             geom_feat = ogr.Feature(geom_lyrDefn)
             geom_feat.SetGeometry(poly)
@@ -114,7 +121,7 @@ if __name__ == '__main__':
             y_res = int((y_max - y_min) / 30)
         # Create an empty raster
             geom_ras = drvMemR.Create('', x_res, y_res, gdal.GDT_Byte)
-            geom_ras.SetProjection(target_SR.ExportToWkt())
+            geom_ras.SetProjection(point_SR.ExportToWkt())
             geom_ras.SetGeoTransform((x_min, 30, 0, y_max, 0, -30))
             gdal.RasterizeLayer(geom_ras, [1], geom_lyr, burn_values=[1])
         # Reproject the Hansen-Rasters "into" the geometry-raster
@@ -128,13 +135,14 @@ if __name__ == '__main__':
             loss = ReprojectRaster(gdal.Open(job['loss_raster']), geom_ras)
             #bt.baumiRT.CopyMEMtoDisk(forest, rootFolder + "forest.tif")
             #bt.baumiRT.CopyMEMtoDisk(loss, rootFolder + "loss.tif")
+            #exit(0)
         # Open all rasters into np-Arrays
             geom_np = geom_ras.GetRasterBand(1).ReadAsArray(0, 0, x_res, y_res)
             forest_np = forest.GetRasterBand(1).ReadAsArray(0, 0, x_res, y_res)
             loss_np = loss.GetRasterBand(1).ReadAsArray(0, 0, x_res, y_res)
         # Calculate the summaries for the finest resolution
             # Part I: Forest
-            forest_np_25 = np.where((geom_np == 1) & (forest_np >= 25), 1, 0)
+            forest_np_25 = np.where((geom_np == 1) & (forest_np >= 10), 1, 0)
             forest_np_25 = forest_np_25.astype(np.uint8)
             def blockshaped(arr, nrows, ncols):
                 """
@@ -157,8 +165,8 @@ if __name__ == '__main__':
             # Part II: Forest loss per year
             loss_np_forest = np.where((geom_np == 1) & (loss_np > 0) & (forest_np_25 == 1), loss_np, 0)
             loss_np_forest_300 = blockshaped(loss_np_forest, 10, 10).reshape((100, 100))
-            lossYr_300 = np.zeros((100, 18), np.float32)
-            for yr in range(1, 19, 1):
+            lossYr_300 = np.zeros((100, 19), np.float32)
+            for yr in range(1, 20, 1):
                 loss_np_yr = np.where((loss_np_forest_300 == yr), 1, 0)
                 loss_np_yr = loss_np_yr.astype(np.uint8)
                 loss_yr = np.sum(loss_np_yr, axis=1) * 30 * 30 / 1000000
@@ -190,13 +198,13 @@ if __name__ == '__main__':
                               columns=['id_3000', 'x_3000', 'y_3000', 'id_1500', 'x_1500', 'y_1500', 'id_300', 'x_300', 'y_300',
                                        'F2000_km', 'FL_2001_km', 'FL_2002_km', 'FL_2003_km', 'FL_2004_km', 'FL_2005_km', 'FL_2006_km',
                                        'FL_2007_km', 'FL_2008_km', 'FL_2009_km', 'FL_2010_km', 'FL_2011_km', 'FL_2012_km', 'FL_2013_km',
-                                       'FL_2014_km', 'FL_2015_km', 'FL_2016_km', 'FL_2017_km', 'FL_2018_km', 'ECO_ID', 'BIOME_NUM'])
+                                       'FL_2014_km', 'FL_2015_km', 'FL_2016_km', 'FL_2017_km', 'FL_2018_km', 'FL_2019_km','ECO_ID', 'BIOME_NUM'])
             # Merge the data.frame to the output data frame
             out_PD = pd.concat([out_PD, df])
             # For testing: convert the data frame into a point shapefile
             #df['geometry'] = df.apply(lambda x: Point((float(x.x_300), float(x.y_300))), axis=1)
             #geopandasDF = gpd.GeoDataFrame(df, geometry='geometry')
-            #geopandasDF.crs = target_SR.ExportToProj4()
+            #geopandasDF.crs = point_SR.ExportToProj4()
             #geopandasDF.to_file(rootFolder + 'test.shp', driver='ESRI Shapefile')
             #exit(0)
         # take the next feature
@@ -223,7 +231,7 @@ if __name__ == '__main__':
     outDS.to_csv(out_csv, encoding='utf-8', index=False, sep=",")
     print("Write files per ecoregion to disc")
     for eco, df_eco in outDS.groupby('ECO_ID'):
-        outname = rootFolder + "By_Ecoregion/TDFsSAcut_grid_3kmpoint_EPSG54009_summary_Hansen-th25_20190718_ECO_ID_" + str(eco) + ".csv"
+        outname = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009_summary_Hansen-th10_20190810_ECO_ID_" + str(eco) + ".csv"
         df_eco.to_csv(outname, encoding='utf-8', index=False, sep=",")
 
 
