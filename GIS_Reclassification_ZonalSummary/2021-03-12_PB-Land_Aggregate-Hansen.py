@@ -93,6 +93,10 @@ if __name__ == '__main__':
             F_res.SetProjection(rm_pr)
             F_res.SetGeoTransform(out_gt)
             gdal.Warp(destNameOrDestDS=F_res, srcDSOrSrcDSTab=f_bin_file, options=warp_options)
+            F_arr = F_res.GetRasterBand(1).ReadAsArray()
+            F_arr1 = np.sum(F_arr)
+
+
             outArr[:,:,4] = F_res.GetRasterBand(1).ReadAsArray()
         # (2) Ramankutty
             inv_gt = gdal.InvGeoTransform(rm_gt)
@@ -160,10 +164,10 @@ if __name__ == '__main__':
             bt.baumiRT.CopyMEMtoDisk(outRas, job['out'] + job['id'])
 
 # (3) Execute the Worker_Funtion parallel
-    job_results = Parallel(n_jobs=nr_cores)(delayed(ResampleFunc)(i) for i in tqdm(jobList))
-    #for job in jobList:
-    #   list = ResampleFunc(job)
-    ##exit(0)
+    #job_results = Parallel(n_jobs=nr_cores)(delayed(ResampleFunc)(i) for i in tqdm(jobList))
+    for job in jobList:
+       list = ResampleFunc(job)
+    exit(0)
 
 # (4) Merge tiles
     def BuildVRT(folder, outfile):

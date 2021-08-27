@@ -17,7 +17,7 @@ print("Starting process, time: " + starttime)
 print("")
 # ####################################### FILES AND FOLDER-PATHS ############################################## #
 workFolder = "D:/OneDrive - Conservation Biogeography Lab/_RESEARCH/Projects_Active/_Vanishing_Treasures/"
-studyArea = bt.baumiVT.CopyToMem(workFolder + "Variables/StudyArea_combined_WGS84.shp")
+studyArea = bt.baumiVT.CopyToMem(workFolder + "Variables/KGZ_TJK_150kmBuffer_WGS84.shp")
 output_folder = workFolder + "Variables/"
 tilevar = "Id"
 maxTasks = 2
@@ -112,6 +112,11 @@ def Calculate_Landsat_Seasonal_Mean(year, startMonth, endMonth, roi, mask_clouds
 			ndmi = ndmi.multiply(10000).int()
 			return image.addBands(ndmi)
 
+		def add_NDVI(image):
+			ndvi = image.normalizedDifference(['NIR', 'R']).rename('NDVI')
+			ndvi = ndvi.multiply(10000).int()
+			return image.addBands(ndvi)
+
 		def add_EVI(image):
 			evi = image.expression('2.5 * ((NIR - R) / (NIR + 6 * R - 7.5 * B + 1))',
 			                       {'NIR': image.select('NIR'), 'R': image.select('R'), 'B': image.select('B')}).rename(
@@ -141,7 +146,7 @@ def Calculate_Landsat_Seasonal_Mean(year, startMonth, endMonth, roi, mask_clouds
 			tasseled_cap = ee.Image(brightness).addBands(greenness).addBands(wetness).rename(['tcB', 'tcG', 'tcW'])
 			return image.addBands(tasseled_cap)
 
-		out = landsat.map(add_NBR).map(add_NDMI).map(add_EVI).map(add_MSAVI).map(add_TC).select(indices)
+		out = landsat.map(add_NBR).map(add_NDMI).map(add_EVI).map(add_MSAVI).map(add_NDVI).map(add_TC).select(indices)
 		return out
 	# Introduce a flag. This flag controls, that there are any images in the collection that build the image.
 	# If there arent't any, the the season of interest will be extended by 3 months until there are images
@@ -153,7 +158,7 @@ def Calculate_Landsat_Seasonal_Mean(year, startMonth, endMonth, roi, mask_clouds
 	# combine landsat collections
 	landsat_data = ee.ImageCollection(l4.merge(l5).merge(l7).merge(l8h)).select(['B', 'G', 'R', 'NIR', 'SWIR1', 'SWIR2'])
 	# Add the indices
-	spectral_indices = landsat_indices(landsat_data, ["NDMI", "EVI",  "tcW", "tcB", "tcG"]) # "NBR""MSAVI",
+	spectral_indices = landsat_indices(landsat_data, ["NDVI", "NDMI", "EVI",  "tcW", "tcB", "tcG"]) # "NBR""MSAVI",
 	# Create the reducers
 	mean = ee.Reducer.mean().unweighted()
 	# Calculate the predictors
@@ -223,7 +228,9 @@ def export_Variables(tile):
 	# Topography measures from SRTM
 	elevation = ee.Image("USGS/SRTMGL1_003").select('elevation').clip(roi).int()
 	slope = ee.Terrain.slope(elevation).clip(roi).int()
-	stack = indices.addBands(elevation).addBands(slope)
+	aspect = ee.Terrain.aspect(elevation).clip(roi).int()
+	stack = indices.addBands(elevation).addBands(slope).addBands(aspect)
+
 
 	# Snow cover from MODIS
 	for month in np.arange(1, 12+1, 1).tolist():
@@ -231,7 +238,7 @@ def export_Variables(tile):
 
 	# Rename the bands
 	old_BN = stack.bandNames()
-	new_BN = ["NDMI", "EVI",  "tcW", "tcB", "tcG", "Elev", "Slope",
+	new_BN = ["NDVI", "NDMI", "EVI",  "tcW", "tcB", "tcG", "Elev", "Slope", "Aspect",
 			  "NDSI_Jan", "NDSI_Feb", "NDSI_Mar", "NDSI_Apr", "NDSI_May", "NDSI_Jun", "NDSI_Jul", "NDSI_Aug", "NDSI_Sep", "NDSI_Oct", "NDSI_Nov", "NDSI_Dec"]
 	stack = stack.select(old_BN).rename(new_BN)
 
@@ -245,7 +252,8 @@ def export_Variables(tile):
 		folder=GEE_Folder,
 		fileNamePrefix=fileNamePrefix,
 		region=roi.geometry().getInfo()['coordinates'],
-		scale=250)
+		scale=250)#,
+		# maxPixels=3784216672400)
 
 	task.start()
 

@@ -5,8 +5,8 @@ import gdal, osr, ogr
 import numpy as np
 import baumiTools as bt
 import pandas as pd
-import geopandas as gpd
-from shapely.geometry import Point
+#import geopandas as gpd
+#from shapely.geometry import Point
 from joblib import Parallel, delayed
 from tqdm import tqdm
 # ####################################### SET TIME-COUNT ###################################################### #
@@ -19,14 +19,14 @@ if __name__ == '__main__':
     rootFolder = "L:/_SHARED_DATA/AB_MB/"
     point_shp = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009.shp"
     eco_shp = rootFolder + "OlsonbasedSA_prj.shp"
-    out_csv = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009_summary_Hansen-th10_20200813.csv"
-    forest = "D:/baumamat/Warfare/_Variables/Forest/Forest2000.vrt"
-    gain = "D:/baumamat/Warfare/_Variables/Forest/Gain.vrt"
-    loss = "D:/baumamat/Warfare/_Variables/Forest/LossYear.vrt"
+    out_csv_ALL = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009_summary_Hansen-th10_20210419.csv"
+    forest = "Z:/Hansen_GFC-2020-v1.8/Forest2000.vrt"
+    gain = "Z:/Hansen_GFC-2020-v1.8/Gain.vrt"
+    loss = "Z:/Hansen_GFC-2020-v1.8/LossYear.vrt"
     uid_field = "Id"
     epsg_to = 54009 # Mollweide
-    nPackages = 10000
-    nr_cores = 25
+    nPackages = 39900
+    nr_cores = 30
 # ####################################### PROCESSING ########################################################## #
 # (1) Build job list
     jobList = []
@@ -77,7 +77,7 @@ if __name__ == '__main__':
         out_PD = pd.DataFrame(columns=['id_3000', 'x_3000', 'y_3000', 'id_1500', 'x_1500', 'y_1500', 'id_300', 'x_300', 'y_300',
                  'F2000_km', 'FL_2001_km', 'FL_2002_km', 'FL_2003_km', 'FL_2004_km', 'FL_2005_km', 'FL_2006_km',
                  'FL_2007_km', 'FL_2008_km', 'FL_2009_km', 'FL_2010_km', 'FL_2011_km', 'FL_2012_km', 'FL_2013_km',
-                 'FL_2014_km', 'FL_2015_km', 'FL_2016_km', 'FL_2017_km', 'FL_2018_km', 'FL_2019_km', 'ECO_ID', 'BIOME_NUM'])
+                 'FL_2014_km', 'FL_2015_km', 'FL_2016_km', 'FL_2017_km', 'FL_2018_km', 'FL_2019_km', 'FL_2020_km', 'ECO_ID', 'BIOME_NUM'])
         # Now loop through the selected features in our lyr
         feat = lyr.GetNextFeature()
         while feat:
@@ -165,8 +165,8 @@ if __name__ == '__main__':
             # Part II: Forest loss per year
             loss_np_forest = np.where((geom_np == 1) & (loss_np > 0) & (forest_np_25 == 1), loss_np, 0)
             loss_np_forest_300 = blockshaped(loss_np_forest, 10, 10).reshape((100, 100))
-            lossYr_300 = np.zeros((100, 19), np.float32)
-            for yr in range(1, 20, 1):
+            lossYr_300 = np.zeros((100, 20), np.float32)
+            for yr in range(1, 20 +1, 1):
                 loss_np_yr = np.where((loss_np_forest_300 == yr), 1, 0)
                 loss_np_yr = loss_np_yr.astype(np.uint8)
                 loss_yr = np.sum(loss_np_yr, axis=1) * 30 * 30 / 1000000
@@ -198,7 +198,7 @@ if __name__ == '__main__':
                               columns=['id_3000', 'x_3000', 'y_3000', 'id_1500', 'x_1500', 'y_1500', 'id_300', 'x_300', 'y_300',
                                        'F2000_km', 'FL_2001_km', 'FL_2002_km', 'FL_2003_km', 'FL_2004_km', 'FL_2005_km', 'FL_2006_km',
                                        'FL_2007_km', 'FL_2008_km', 'FL_2009_km', 'FL_2010_km', 'FL_2011_km', 'FL_2012_km', 'FL_2013_km',
-                                       'FL_2014_km', 'FL_2015_km', 'FL_2016_km', 'FL_2017_km', 'FL_2018_km', 'FL_2019_km','ECO_ID', 'BIOME_NUM'])
+                                       'FL_2014_km', 'FL_2015_km', 'FL_2016_km', 'FL_2017_km', 'FL_2018_km', 'FL_2019_km', 'FL_2020_km', 'ECO_ID', 'BIOME_NUM'])
             # Merge the data.frame to the output data frame
             out_PD = pd.concat([out_PD, df])
             # For testing: convert the data frame into a point shapefile
@@ -228,11 +228,11 @@ if __name__ == '__main__':
     #geopandasDF.crs = target_SR.ExportToProj4()
     #geopandasDF.to_file(rootFolder + 'parallel_test.shp', driver='ESRI Shapefile')
     print("write entire Dataset to disc")
-    outDS.to_csv(out_csv, encoding='utf-8', index=False, sep=",")
+    outDS.to_csv(out_csv_ALL, encoding='utf-8', index=False, sep=",")
     print("Write files per ecoregion to disc")
     for eco, df_eco in outDS.groupby('ECO_ID'):
-        outname = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009_summary_Hansen-th10_20190810_ECO_ID_" + str(eco) + ".csv"
-        df_eco.to_csv(outname, encoding='utf-8', index=False, sep=",")
+        out_csv_ECO = rootFolder + "TDFsSAcut_grid_3kmpoint_EPSG54009_summary_Hansen-th10_20190810_ECO_ID_" + str(eco) + ".csv"
+        df_eco.to_csv(out_csv_ECO, encoding='utf-8', index=False, sep=",")
 
 
 
